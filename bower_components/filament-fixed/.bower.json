@@ -1,0 +1,21 @@
+{
+  "name": "filament-fixed",
+  "version": "0.1.2",
+  "main": [
+    "fixedfixed.js"
+  ],
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {},
+  "homepage": "https://github.com/filamentgroup/fixed-fixed",
+  "_release": "0.1.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.2",
+    "commit": "12760b2e3225238a2508e2f8b4d3ec89afe1f689"
+  },
+  "_source": "git://github.com/filamentgroup/fixed-fixed.git",
+  "_target": ">=0.1.1",
+  "_originalSource": "filament-fixed"
+}
