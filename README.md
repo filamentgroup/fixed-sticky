@@ -9,9 +9,17 @@ CSS position:sticky is really in its infancy in terms of browser support. In sto
 
 ## Usage
 
-Just qualify element you’d like to be `position:sticky` with a `fixedsticky` class and add your own CSS to position the element.
+Just qualify element you’d like to be `position:sticky` with a `fixedsticky` class.
+
+    <div id="my-element" class="fixedsticky">
+
+Add your own CSS to position the element.
 
     .fixedsticky { top: 0; }
+
+Next, add the events and initialize your sticky nodes:
+
+    $( '#my-element' ).fixedsticky();
 
 See [`demo.html`](http://filamentgroup.github.com/fixed-sticky/demo.html) for an example.
 
@@ -23,11 +31,34 @@ Use the provided `fixedsticky.js` and `fixedsticky.css` files.
 
     bower install filament-sticky
 
+## Browser Support
+
+These tests were performed using fixed-sticky with fixed-fixed. It’s safest to use them together (`position:fixed` is a minefield on older devices), but they can be used independently.
+
+### Native Sticky
+
+* iOS 7
+
+### Polyfilled
+
+* Internet Explorer 7, 8, 9, 10
+* Firefox 24
+* Chrome 29
+* Safari 6.0.5
+* Opera 12.16
+* Android 4.X
+
+### Fallback (static positioning)
+
+* Android 2.X
+* Opera Mini
+
 ## TODO
 
 * Add support for container-based position: sticky. Only constrains to the document right now.
 * Add support for `bottom` positioning. Supports only top right now.
 * Tests (of course). I have a serious case of developer guilt releasing this without tests.
+* Test support on Windows Phone and older Blackberry.
 
 ## Release History
 
