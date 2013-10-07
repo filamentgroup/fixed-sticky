@@ -13,7 +13,7 @@ Just qualify element you’d like to be `position:sticky` with a `fixedsticky` c
 
     <div id="my-element" class="fixedsticky">
 
-Add your own CSS to position the element.
+Add your own CSS to position the element. Supports any value for `top` or `bottom`.
 
     .fixedsticky { top: 0; }
 
