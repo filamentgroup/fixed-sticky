@@ -23,9 +23,18 @@ Next, add the events and initialize your sticky nodes:
 
 See [`demo.html`](http://filamentgroup.github.com/fixed-sticky/demo.html) for an example.
 
-## Caveats
+## Native `position: sticky` Caveats
 
-Native `position: sticky` on iOS (and Chrome) does not support `position: sticky;` with `display: inline-block;`.
+* iOS (and Chrome) do not support `position: sticky;` with `display: inline-block;`.
+* `sticky` elements are constrained to the dimensions of their parents.
+* This plugin (and Chrome’s implementation) does not (yet) support use with `thead` and `tfoot`.
+
+### Using the polyfill instead of native
+
+If you’re having weird issues with native `position: sticky`, you can tell fixed-sticky to use the polyfill instead of native. Just override the sticky feature test to always return false.
+
+    // After fixed-sticky.js
+    FixedSticky.tests.sticky = false;
 
 ## Installation
 

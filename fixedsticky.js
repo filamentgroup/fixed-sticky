@@ -80,9 +80,6 @@
 		init: function( el ) {
 			var $el = $( el );
 
-			// Ideally this should be added in markup.
-			$el.addClass( S.classes.plugin );
-
 			$( win ).bind( 'scroll', function() {
 				S.update( el );
 			}).trigger( 'scroll' );
