@@ -44,33 +44,38 @@
 				keys = {
 					offset: 'fixedStickyOffset'
 				},
-				width,
+				height,
 				initialOffset = $el.data( keys.offset ),
 				scroll = S.getScrollTop(),
 				isAlreadyOn = $el.is( '.' + S.classes.active ),
 				toggle = function( turnOn ) {
-					$el[ turnOn ? 'addClass' : 'removeClass' ]( S.classes.active );
-				};
+					$el[ turnOn ? 'addClass' : 'removeClass' ]( S.classes.active )
+						.trigger( turnOn ? 'stick' : 'unstick' );
+				},
+				viewportHeight = $( window ).height();
 
 			if( !el.offsetWidth ) {
 				return;
 			}
 
+			height = $el.outerHeight();
+
 			if( !initialOffset ) {
-				width = $el.width();
 				initialOffset = $el.offset().top;
+
 				$el.data( keys.offset, initialOffset );
-				$el.width( width );
-				$el.after( $( '<div>' ).addClass( S.classes.clone ).height( $el.outerHeight() ).width( width ) );
+				$el.after( $( '<div>' ).addClass( S.classes.clone ).height( height ) );
 			}
 
-			if( initialOffset > scroll ) {
-				if( isAlreadyOn ) {
-					toggle( false );
-				}
-			} else {
+			if( $el.css( 'top' ) !== 'auto' && initialOffset < scroll || 
+				$el.css( 'bottom' ) !== 'auto' && initialOffset > scroll + viewportHeight - ( height || 0 ) ) {
+
 				if( !isAlreadyOn ) {
 					toggle( true );
+				}
+			} else {
+				if( isAlreadyOn ) {
+					toggle( false );
 				}
 			}
 		},

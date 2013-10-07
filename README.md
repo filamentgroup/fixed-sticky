@@ -55,9 +55,8 @@ These tests were performed using fixed-sticky with fixed-fixed. It’s safest to
 
 ## TODO
 
-* Add support for container-based position: sticky. Only constrains to the document right now.
-* Add support for `bottom` positioning. Supports only top right now.
 * Tests (of course). I have a serious case of developer guilt releasing this without tests.
+* Add support for table headers.
 * Test support on Windows Phone and older Blackberry.
 
 ## Release History
