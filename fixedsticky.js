@@ -40,11 +40,15 @@
 				return;
 			}
 
+			if( !el.offsetWidth ) {
+				return;
+			}
+
 			var $el = $( el ),
 				keys = {
 					offset: 'fixedStickyOffset'
 				},
-				height,
+				height = $el.outerHeight(),
 				initialOffset = $el.data( keys.offset ),
 				scroll = S.getScrollTop(),
 				isAlreadyOn = $el.is( '.' + S.classes.active ),
@@ -53,12 +57,6 @@
 						.trigger( turnOn ? 'stick' : 'unstick' );
 				},
 				viewportHeight = $( window ).height();
-
-			if( !el.offsetWidth ) {
-				return;
-			}
-
-			height = $el.outerHeight();
 
 			if( !initialOffset ) {
 				initialOffset = $el.offset().top;
