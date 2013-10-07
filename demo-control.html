@@ -4,7 +4,6 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title>Fixed Sticky</title>
-		<link rel="stylesheet" href="fixedsticky.css">
 		<style>
 			/* Demo CSS */
 			body { font-family: sans-serif; color: #444; margin: 0 auto; padding: 50px 20px; max-width: 600px; }
@@ -12,6 +11,14 @@
 			.bottom { background: #000; color: #fff; text-align: center; border: solid black; border-width: 1px 0; padding: 1em; width: 100%; max-width: 600px; box-sizing: -webkit-border-box; box-sizing: -moz-border-box; box-sizing: border-box; }
 
 			/* Fixed-Sticky CSS */
+			.top,
+			.bottom {
+				position: -webkit-sticky;
+				position: -moz-sticky;
+				position: -ms-sticky;
+				position: -o-sticky;
+				position: sticky;
+			}
 			.top {
 				top: 0; 
 			}
@@ -28,8 +35,10 @@
 		
 		<p>This test page includes a test to qualify the application of CSS <code>position:sticky</code>, which enjoys limited browser support. It works with the <a href="https://github.com/filamentgroup/fixed-fixed">Fixed-fixed project</a> (as of v0.1.2 of fixed-fixed).</p>
 		
-		<div class="top fixedsticky">
-			Fixed to viewport top, when supported.
+		<div style="height: 600px">
+			<div class="top fixedsticky">
+				Fixed to viewport top, when supported.
+			</div>
 		</div>
 
 		<p>And now, some fake content to allow scrolling...</p>
@@ -39,8 +48,8 @@
 		<h2>Header Level 2</h2>
 
 		<ol>
-		   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-		   <li>Aliquam tincidunt mauris eu risus.</li>
+			 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+			 <li>Aliquam tincidunt mauris eu risus.</li>
 		</ol>
 
 		<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p></blockquote>
@@ -48,8 +57,8 @@
 		<h3>Header Level 3</h3>
 
 		<ul>
-		   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-		   <li>Aliquam tincidunt mauris eu risus.</li>
+			 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+			 <li>Aliquam tincidunt mauris eu risus.</li>
 		</ul>
 
 		<pre><code>
@@ -68,8 +77,8 @@
 		<h2>Header Level 2</h2>
 
 		<ol>
-		   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-		   <li>Aliquam tincidunt mauris eu risus.</li>
+			 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+			 <li>Aliquam tincidunt mauris eu risus.</li>
 		</ol>
 
 		<div class="bottom fixedsticky">
@@ -81,8 +90,8 @@
 		<h3>Header Level 3</h3>
 
 		<ul>
-		   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-		   <li>Aliquam tincidunt mauris eu risus.</li>
+			 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+			 <li>Aliquam tincidunt mauris eu risus.</li>
 		</ul>
 
 		<pre><code>
@@ -101,8 +110,8 @@
 		<h2>Header Level 2</h2>
 
 		<ol>
-		   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-		   <li>Aliquam tincidunt mauris eu risus.</li>
+			 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+			 <li>Aliquam tincidunt mauris eu risus.</li>
 		</ol>
 
 		<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p></blockquote>
@@ -110,8 +119,8 @@
 		<h3>Header Level 3</h3>
 
 		<ul>
-		   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-		   <li>Aliquam tincidunt mauris eu risus.</li>
+			 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+			 <li>Aliquam tincidunt mauris eu risus.</li>
 		</ul>
 
 		<pre><code>
@@ -130,8 +139,8 @@
 		<h2>Header Level 2</h2>
 
 		<ol>
-		   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-		   <li>Aliquam tincidunt mauris eu risus.</li>
+			 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+			 <li>Aliquam tincidunt mauris eu risus.</li>
 		</ol>
 
 		<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p></blockquote>
@@ -139,8 +148,8 @@
 		<h3>Header Level 3</h3>
 
 		<ul>
-		   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-		   <li>Aliquam tincidunt mauris eu risus.</li>
+			 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+			 <li>Aliquam tincidunt mauris eu risus.</li>
 		</ul>
 
 		<pre><code>
@@ -159,15 +168,8 @@
 		<h2>Header Level 2</h2>
 
 		<ol>
-		   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-		   <li>Aliquam tincidunt mauris eu risus.</li>
+			<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+			<li>Aliquam tincidunt mauris eu risus.</li>
 		</ol>
-		
-		<script src="bower_components/jquery/jquery.js"></script>
-		<script src="bower_components/filament-fixed/fixedfixed.js"></script>
-		<script src="fixedsticky.js"></script>
-		<script>
-		$( '.top, .bottom' ).fixedsticky();
-		</script>
 	</body>
 </html>
