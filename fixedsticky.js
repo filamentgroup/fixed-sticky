@@ -53,8 +53,7 @@
 				scroll = S.getScrollTop(),
 				isAlreadyOn = $el.is( '.' + S.classes.active ),
 				toggle = function( turnOn ) {
-					$el[ turnOn ? 'addClass' : 'removeClass' ]( S.classes.active )
-						.trigger( turnOn ? 'stick' : 'unstick' );
+					$el[ turnOn ? 'addClass' : 'removeClass' ]( S.classes.active );
 				},
 				viewportHeight = $( window ).height();
 
