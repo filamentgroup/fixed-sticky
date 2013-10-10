@@ -57,20 +57,32 @@
 					$el[ turnOn ? 'addClass' : 'removeClass' ]( S.classes.active );
 				},
 				viewportHeight = $( window ).height(),
-				position = $el.data( keys.position ) || {
-					top: false,
-					bottom: false
-				};
+				position = $el.data( keys.position ),
+				skipSettingToFixed;
 
 			if( !initialOffset ) {
 				initialOffset = $el.offset().top;
 				$el.data( keys.offset, initialOffset );
 				$el.after( $( '<div>' ).addClass( S.classes.clone ).height( height ) );
+			}
 
-				$el.css( 'position', 'fixed' );
-				position.top = $el.css( 'top' ) !== 'auto';
-				position.bottom = $el.css( 'bottom' ) !== 'auto';
-				$el.css( 'position', '' );
+			if( !position ) {
+				// Some browsers require fixed/absolute to report accurate top/left values.
+				skipSettingToFixed = $el.css( 'top' ) !== 'auto' || $el.css( 'bottom' ) !== 'auto';
+
+				if( !skipSettingToFixed ) {
+					$el.css( 'position', 'fixed' );
+				}
+
+				position = {
+					top: $el.css( 'top' ) !== 'auto',
+					bottom: $el.css( 'bottom' ) !== 'auto'
+				};
+
+				if( !skipSettingToFixed ) {
+					$el.css( 'position', '' );
+				}
+
 				$el.data( keys.position, position );
 			}
 
