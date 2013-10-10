@@ -46,7 +46,8 @@
 
 			var $el = $( el ),
 				keys = {
-					offset: 'fixedStickyOffset'
+					offset: 'fixedStickyOffset',
+					position: 'fixedStickyPosition'
 				},
 				height = $el.outerHeight(),
 				initialOffset = $el.data( keys.offset ),
@@ -55,17 +56,26 @@
 				toggle = function( turnOn ) {
 					$el[ turnOn ? 'addClass' : 'removeClass' ]( S.classes.active );
 				},
-				viewportHeight = $( window ).height();
+				viewportHeight = $( window ).height(),
+				position = $el.data( keys.position ) || {
+					top: false,
+					bottom: false
+				};
 
 			if( !initialOffset ) {
 				initialOffset = $el.offset().top;
-
 				$el.data( keys.offset, initialOffset );
 				$el.after( $( '<div>' ).addClass( S.classes.clone ).height( height ) );
+
+				$el.css( 'position', 'fixed' );
+				position.top = $el.css( 'top' ) !== 'auto';
+				position.bottom = $el.css( 'bottom' ) !== 'auto';
+				$el.css( 'position', '' );
+				$el.data( keys.position, position );
 			}
 
-			if( $el.css( 'top' ) !== 'auto' && initialOffset < scroll || 
-				$el.css( 'bottom' ) !== 'auto' && initialOffset > scroll + viewportHeight - ( height || 0 ) ) {
+			if( position.top && initialOffset < scroll || 
+				position.bottom && initialOffset > scroll + viewportHeight - ( height || 0 ) ) {
 
 				if( !isAlreadyOn ) {
 					toggle( true );
