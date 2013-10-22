@@ -86,7 +86,7 @@
 				$el.data( keys.position, position );
 			}
 
-			if( position.top && initialOffset < scroll || 
+			if( position.top && initialOffset < (scroll+height) ||
 				position.bottom && initialOffset > scroll + viewportHeight - ( height || 0 ) ) {
 
 				if( !isAlreadyOn ) {
