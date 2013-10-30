@@ -58,7 +58,8 @@
 				},
 				viewportHeight = $( window ).height(),
 				position = $el.data( keys.position ),
-				skipSettingToFixed;
+				skipSettingToFixed,
+				elTop;
 
 			if( !initialOffset ) {
 				initialOffset = $el.offset().top;
@@ -86,7 +87,10 @@
 				$el.data( keys.position, position );
 			}
 
-			if( position.top && initialOffset < (scroll+height) ||
+			elTop = parseInt($(el).css('top'),10);
+			if(isNaN(elTop)) elTop = 0;
+
+			if( position.top && initialOffset < (scroll+elTop) ||
 				position.bottom && initialOffset > scroll + viewportHeight - ( height || 0 ) ) {
 
 				if( !isAlreadyOn ) {
