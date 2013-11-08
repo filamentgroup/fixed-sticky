@@ -33,7 +33,8 @@
         win.document.documentElement[ method ] :
         win.document.body[ method ];
     },
-    hasPosSticky: function() {
+    hasFixSticky: function() {
+      // Check  native sticky, check fixed and if fixed-fixed is also included on the page and is supported
       return !!( S.tests.sticky || !S.tests.fixed || win.FixedFixed && !$( win.document.documentElement ).hasClass( 'fixed-supported' ) );
     },
     update: function( el ) {
@@ -95,7 +96,7 @@
     },
     destroy: function( el ) {
       var $el = $( el );
-      if (S.hasPosSticky()) return;
+      if (S.hasFixSticky()) return;
 
       $( win ).unbind( '.fixedsticky' );
 
@@ -109,9 +110,7 @@
     init: function( el ) {
       var $el = $( el );
 
-      // Only exec if native sticky isn’t supported, fixed is supported,
-      // and if fixed-fixed is also included on the page and is supported
-      if (S.hasPosSticky()) return;
+      if (S.hasFixSticky()) return;
 
       return $el.each(function() {
         var _this = this;
