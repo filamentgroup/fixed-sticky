@@ -98,6 +98,18 @@
         }
       }
     },
+    destroy: function( el ) {
+      var $el = $( el );
+
+      $( win ).unbind( '.fixedsticky' );
+
+      return $el.each(function() {
+        $( this )
+          .removeData()
+          .removeClass( S.classes.active )
+          .next().remove();
+      });
+    },
     init: function( el ) {
       var $el = $( el );
 
