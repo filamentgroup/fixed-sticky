@@ -101,14 +101,18 @@
     init: function( el ) {
       var $el = $( el );
 
-      $( win ).bind( 'scroll', function() {
-        S.update( el );
-      }).trigger( 'scroll' );
+      return $el.each(function() {
+        var _this = this;
 
-      $( win ).bind( 'resize', function() {
-        if( $el.is( '.' + S.classes.active ) ) {
-          S.update( el );
-        }
+        $( win ).bind( 'scroll.fixedsticky', function() {
+          S.update( _this);
+        }).trigger( 'scroll.fixedsticky' );
+
+        $( win ).bind( 'resize.fixedsticky', function() {
+          if( $el.is( '.' + S.classes.active ) ) {
+            S.update( _this );
+          }
+        });
       });
     }
   };
