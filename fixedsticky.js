@@ -114,10 +114,15 @@
   };
 
   // Plugin
-  $.fn.fixedsticky = function(){
-    return this.each(function () {
-      S.init( this );
-    });
+  $.fn.fixedsticky = function( method ) {
+    if ( typeof S[ method ] === 'function') {
+      return S[ method ].call( S, this);
+    } else if ( typeof method === 'object' || ! method ) {
+      return S.init.call( S, this );
+    } else {
+      throw new Error( 'Method `' +  method + '` does not exist on jQuery.fixedsticky' );
+      return this;
+    }
   };
 
   // Add fallback when fixed-fixed is not available.
