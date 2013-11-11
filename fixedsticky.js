@@ -107,20 +107,22 @@
 
 			return $el.each(function() {
 				$( this )
-					.removeData()
+					.removeData( [ keys.offset, keys.position ] )
 					.removeClass( S.classes.active )
-					.next().remove();
+					.nextUntil( S.classes.clone ).remove();
 			});
 		},
 		init: function( el ) {
 			var $el = $( el );
 
-			if (S.hasFixSticky()) return;
+			if( S.hasFixSticky() ) {
+				return;
+			}
 
 			return $el.each(function() {
 				var _this = this;
 				$( win ).bind( 'scroll.fixedsticky', function() {
-					S.update( _this);
+					S.update( _this );
 				}).trigger( 'scroll.fixedsticky' );
 
 				$( win ).bind( 'resize.fixedsticky', function() {
