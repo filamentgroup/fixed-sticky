@@ -127,6 +127,8 @@
 		}
 	};
 
+	win.FixedSticky = S;
+
 	// Plugin
 	$.fn.fixedsticky = function( method ) {
 		if ( typeof S[ method ] === 'function') {
