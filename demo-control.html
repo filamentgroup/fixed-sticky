@@ -32,13 +32,17 @@
 		<h1>Fixed-sticky</h1>
 		
 		<p>A test page for the <a href="https://github.com/filamentgroup/fixed-sticky">Fixed-sticky project</a></p>
-		
+
+		<div style="height: 600px">
+			<div class="top fixedsticky" style="background-color: rgba(255,0,0,.6)">
+				Fixed to viewport top A, when supported.
+			</div>
+		</div>
+
 		<p>This test page includes a test to qualify the application of CSS <code>position:sticky</code>, which enjoys limited browser support. It works with the <a href="https://github.com/filamentgroup/fixed-fixed">Fixed-fixed project</a> (as of v0.1.2 of fixed-fixed).</p>
 		
-		<div style="height: 600px">
-			<div class="top fixedsticky">
-				Fixed to viewport top, when supported.
-			</div>
+		<div class="top fixedsticky" style="background-color: rgba(0,255,0,.6)">
+			Fixed to viewport top B, when supported.
 		</div>
 
 		<p>And now, some fake content to allow scrolling...</p>
