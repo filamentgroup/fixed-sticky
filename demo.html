@@ -16,7 +16,14 @@
 				top: 0; 
 			}
 			.bottom {
-				bottom: 0;
+				bottom: 1em;
+			}
+			#top-a {
+				background-color: rgba(255,0,0,.6);
+				top: 1em;
+			}
+			#top-b {
+				background-color: rgba(0,255,0,.6);
 			}
 		</style>
 	</head>
@@ -27,14 +34,14 @@
 		<p>A test page for the <a href="https://github.com/filamentgroup/fixed-sticky">Fixed-sticky project</a></p>
 
 		<div style="height: 600px">
-			<div class="top fixedsticky" style="background-color: rgba(255,0,0,.6)">
+			<div class="top fixedsticky" id="top-a">
 				Fixed to viewport top A, when supported.
 			</div>
 		</div>
 
 		<p>This test page includes a test to qualify the application of CSS <code>position:sticky</code>, which enjoys limited browser support. It works with the <a href="https://github.com/filamentgroup/fixed-fixed">Fixed-fixed project</a> (as of v0.1.2 of fixed-fixed).</p>
 		
-		<div class="top fixedsticky" style="background-color: rgba(0,255,0,.6)">
+		<div class="top fixedsticky" id="top-b">
 			Fixed to viewport top B, when supported.
 		</div>
 
@@ -79,7 +86,7 @@
 		</ol>
 
 		<div class="bottom fixedsticky">
-			Fixed to viewport bottom, when supported.
+			Fixed to viewport bottom (1em above), when supported.
 		</div>
 
 		<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p></blockquote>
