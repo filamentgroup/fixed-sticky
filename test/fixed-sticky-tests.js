@@ -20,15 +20,21 @@
 			raises(block, [expected], [message])
 	*/
 
-	module('testDefault');
+	FixedSticky.tests.sticky = false;
 
-	test( 'Setup', function() {
-		// These tests require non-native sticky support. Should be set in the test runner.
+	module('testDefault', {
+		setup: function() {
+			$(window).scrollTop( 0 );
+		}
+	});
+
+	test( 'Environment', function() {
+		// These tests require non-native sticky support. Should be set above.
 		ok( !FixedSticky.tests.sticky );
 	});
 
 	test( 'Standard Top', function() {
-		$('#qunit-fixture').html(
+		$( '#qunit-fixture' ).html(
 				['<style>#sticky { top: 0; }</style>',
 				'<div id="sticky" class="fixedsticky">Sticky</div>',
 				'<div style="width: 100%; height: 2000px">Test</div>'].join( '' ) );
@@ -43,7 +49,7 @@
 	});
 
 	test( 'Standard Bottom', function() {
-		$('#qunit-fixture').html(
+		$( '#qunit-fixture' ).html(
 				['<style>#sticky { bottom: 0; }</style>',
 				'<div style="width: 100%; height: 2000px">Test</div>',
 				'<div id="sticky" class="fixedsticky">Sticky</div>'].join( '' ) );
@@ -57,8 +63,25 @@
 		equal( Math.round( $sticky.offset().top ), 1000 + $( window ).height() - $sticky.height() );
 	});
 
+	test( 'Constrainted to parent (feature not yet implemented)', function() {
+		$( '#qunit-fixture' ).html(
+				['<style>#sticky { top: 0; }</style>',
+				'<div style="width: 100%; height: 1000px"><div id="sticky" class="fixedsticky">Sticky</div></div>',
+				'<div style="width: 100%; height: 2000px">Test</div>'].join( '' ) );
+
+		var $sticky = $( '#sticky' );
+		$sticky.fixedsticky();
+
+		ok( $sticky.hasClass( 'fixedsticky' ) );
+		$(window).scrollTop( 1000 ).trigger( 'scroll' );
+		equal( $sticky.css( 'position' ), 'fixed' );
+		equal( $sticky.offset().top, 1000 );
+		$(window).scrollTop( 2000 ).trigger( 'scroll' );
+		equal( $sticky.css( 'position' ), 'static' );
+	});
+
 	test( 'Cleanup', function() {
-		$('#qunit-fixture').html('<div id="sticky" class="fixedsticky">Sticky</div>' );
+		$( '#qunit-fixture' ).html( '<div id="sticky" class="fixedsticky">Sticky</div>' );
 
 		var $sticky = $( '#sticky' );
 			$sticky.fixedsticky();
