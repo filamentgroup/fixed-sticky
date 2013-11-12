@@ -76,3 +76,4 @@ These tests were performed using fixed-sticky with fixed-fixed. It’s safest to
 ## Release History
 
 * `v0.1.0`: Initial release.
+* `v0.1.3`: Bug fixes, rudimentary tests, destroy method.
