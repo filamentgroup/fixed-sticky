@@ -21,7 +21,9 @@ Next, add the events and initialize your sticky nodes:
 
     $( '#my-element' ).fixedsticky();
 
-See [`demo.html`](http://filamentgroup.github.com/fixed-sticky/demo.html) for an example.
+## Demos
+* For a fixed-sticky demo, open [`demo.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo.html).
+* For a pure native position: sticky test, open [`demo-control.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo-control.html).
 
 ## Native `position: sticky` Caveats
 

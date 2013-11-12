@@ -22,6 +22,7 @@
     "grunt": "~0.4.1",
     "grunt-contrib-qunit": "~0.3.0",
     "matchdep": "~0.3.0",
-    "grunt-contrib-watch": "~0.5.3"
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-gh-pages": "~0.8.1"
   }
 }

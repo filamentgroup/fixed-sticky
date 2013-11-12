@@ -10,6 +10,10 @@ module.exports = function(grunt) {
 		},
 		qunit: {
 			all: ['test/**/*.html']
+		},
+		'gh-pages': {
+			options: {},
+			src: ['fixedsticky.css', 'fixedsticky.js', 'bower_components/**/*', 'test/**/*', 'demos/**/*']
 		}
 	});
 
