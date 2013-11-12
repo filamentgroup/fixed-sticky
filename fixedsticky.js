@@ -21,6 +21,10 @@
 			clone: 'fixedsticky-dummy',
 			withoutFixedFixed: 'fixedsticky-withoutfixedfixed'
 		},
+		keys: {
+			offset: 'fixedStickyOffset',
+			position: 'fixedStickyPosition'
+		},
 		tests: {
 			sticky: featureTest( 'position', 'sticky' ),
 			fixed: featureTest( 'position', 'fixed', true )
@@ -41,26 +45,22 @@
 			if( !el.offsetWidth ) return;
 
 			var $el = $( el ),
-				keys = {
-					offset: 'fixedStickyOffset',
-					position: 'fixedStickyPosition'
-				},
 				height = $el.outerHeight(),
-				initialOffset = $el.data( keys.offset ),
+				initialOffset = $el.data( S.keys.offset ),
 				scroll = S.getScrollTop(),
 				isAlreadyOn = $el.is( '.' + S.classes.active ),
 				toggle = function( turnOn ) {
 					$el[ turnOn ? 'addClass' : 'removeClass' ]( S.classes.active );
 				},
 				viewportHeight = $( window ).height(),
-				position = $el.data( keys.position ),
+				position = $el.data( S.keys.position ),
 				skipSettingToFixed,
 				elTop,
 				elBottom;
 
 			if( !initialOffset ) {
 				initialOffset = $el.offset().top;
-				$el.data( keys.offset, initialOffset );
+				$el.data( S.keys.offset, initialOffset );
 				$el.after( $( '<div>' ).addClass( S.classes.clone ).height( height ) );
 			}
 
@@ -81,7 +81,7 @@
 					$el.css( 'position', '' );
 				}
 
-				$el.data( keys.position, position );
+				$el.data( S.keys.position, position );
 			}
 
 			elTop = parseInt( $( el ).css( 'top' ), 10 ) || 0;
@@ -107,7 +107,7 @@
 
 			return $el.each(function() {
 				$( this )
-					.removeData( [ keys.offset, keys.position ] )
+					.removeData( [ S.keys.offset, S.keys.position ] )
 					.removeClass( S.classes.active )
 					.nextUntil( S.classes.clone ).remove();
 			});

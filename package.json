@@ -1,0 +1,27 @@
+{
+  "name": "fixed-sticky",
+  "version": "0.1.1",
+  "description": "A position: sticky polyfill that works with filamentgroup/fixed-fixed for a safer position:fixed fallback.",
+  "main": "fixedsticky.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/filamentgroup/fixed-sticky.git"
+  },
+  "keywords": [
+    "sticky"
+  ],
+  "author": "Zach Leatherman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/filamentgroup/fixed-sticky/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-qunit": "~0.3.0",
+    "matchdep": "~0.3.0",
+    "grunt-contrib-watch": "~0.5.3"
+  }
+}

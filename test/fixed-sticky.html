@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>fixed-sticky Test Suite</title>
+	<!-- Load local jQuery, removing access to $ (use jQuery, not $). -->
+	<script src="../bower_components/jquery/jquery.js"></script>
+	<script>jQuery.noConflict()</script>
+	<!-- Load local QUnit (grunt requires v1.0.0 or newer). -->
+	<link rel="stylesheet" href="../bower_components/qunit/qunit/qunit.css">
+	<style>
+	#qunit-fixture {
+		position: static !important;
+		width: auto;
+		height: auto;
+	}
+	</style>
+	<link rel="stylesheet" href="../fixedsticky.css">
+	<script src="../bower_components/qunit/qunit/qunit.js"></script>
+	<!-- Load local lib and tests. -->
+	<script src="../fixedsticky.js"></script>
+	<script>
+	FixedSticky.tests.sticky = false;
+	</script>
+	<script src="fixed-sticky-tests.js"></script>
+</head>
+<body>
+	<h1 id="qunit-header">fixed-sticky Test Suite</h1>
+	<h2 id="qunit-banner"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+	<h2 id="qunit-userAgent"></h2>
+	<ol id="qunit-tests"></ol>
+	<div id="qunit-fixture"></div>
+</body>
+</html>
