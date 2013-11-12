@@ -54,7 +54,7 @@
 		ok( $sticky.hasClass( 'fixedsticky' ) );
 		$(window).scrollTop( 1000 ).trigger( 'scroll' );
 		equal( $sticky.css( 'position' ), 'fixed' );
-		equal( $sticky.offset().top, 1000 + $( window ).height() - $sticky.height() );
+		equal( Math.round( $sticky.offset().top ), 1000 + $( window ).height() - $sticky.height() );
 	});
 
 	test( 'Cleanup', function() {
