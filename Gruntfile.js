@@ -16,18 +16,18 @@ module.exports = function(grunt) {
 
 		// Task Configuration
 		clean: {
-			files: ['<%= name %>.min.js']
+			files: ['dist/*']
 		},
 		jshint: {
 			gruntfile: {
 				options: {
-					jshintrc: 'gruntfile.jshintrc'
+					jshintrc: 'config/gruntfile.jshintrc'
 				},
 				src: 'Gruntfile.js'
 			},
 			src: {
 				options: {
-					jshintrc: 'plugin.jshintrc'
+					jshintrc: 'config/plugin.jshintrc'
 				},
 				src: '<%= name %>.js'
 			},
@@ -44,7 +44,7 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				src: '<%= name %>.js',
-				dest: '<%= name %>.min.js'
+				dest: 'dist/<%= name %>.min.js'
 			}
 		},
 		watch: {
