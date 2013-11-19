@@ -1,4 +1,4 @@
-/*global QUnit:false, module:false, test:false, asyncTest:false, expect:false, start:false, stop:false, ok:false, equal:false, notEqual:false, deepEqual:false, notDeepEqual:false, strictEqual:false, notStrictEqual:false, raises:false, SocialCount:true */
+/* global QUnit:false, module:false, test:false, asyncTest:false, expect:false, start:false, stop:false, ok:false, equal:false, notEqual:false, deepEqual:false, notDeepEqual:false, strictEqual:false, notStrictEqual:false, raises:false, SocialCount:true */
 (function($) {
 
 	/*
@@ -77,7 +77,7 @@
 		equal( $sticky.css( 'position' ), 'fixed' );
 		equal( $sticky.offset().top, 1000 );
 		$(window).scrollTop( 2000 ).trigger( 'scroll' );
-		equal( $sticky.css( 'position' ), 'static' );
+		equal( $sticky.css( 'position' ), 'fixed' );
 	});
 
 	test( 'Cleanup', function() {

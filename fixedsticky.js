@@ -42,7 +42,7 @@
 			return !!( S.tests.sticky || !S.tests.fixed || win.FixedFixed && !$( win.document.documentElement ).hasClass( 'fixed-supported' ) );
 		},
 		update: function( el ) {
-			if( !el.offsetWidth ) return;
+			if( !el.offsetWidth ) { return; }
 
 			var $el = $( el ),
 				height = $el.outerHeight(),
@@ -101,7 +101,7 @@
 		},
 		destroy: function( el ) {
 			var $el = $( el );
-			if (S.hasFixSticky()) return;
+			if (S.hasFixSticky()) { return; }
 
 			$( win ).unbind( '.fixedsticky' );
 
