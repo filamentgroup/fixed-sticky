@@ -74,6 +74,7 @@ These tests were performed using fixed-sticky with fixed-fixed. It’s safest to
 
 * Add support for table headers.
 * Vanilla JS version.
+* Make sticky smoother on transition between sticky/static for container based
 
 ## [Tests](http://filamentgroup.github.io/fixed-sticky/test/fixed-sticky.html)
 
