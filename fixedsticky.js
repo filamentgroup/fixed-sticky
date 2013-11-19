@@ -42,7 +42,7 @@
 			return !!( S.tests.sticky || !S.tests.fixed || win.FixedFixed && !$( win.document.documentElement ).hasClass( 'fixed-supported' ) );
 		},
 		update: function( el ) {
-			if( !el.offsetWidth ) return;
+			if( !el.offsetWidth ) { return; }
 
 			var $el = $( el ),
 				height = $el.outerHeight(),
@@ -56,7 +56,10 @@
 				position = $el.data( S.keys.position ),
 				skipSettingToFixed,
 				elTop,
-				elBottom;
+				elBottom,
+				$parent = $el.parent(),
+				parentOffset = $parent.offset().top,
+				parentHeight = $parent.outerHeight();
 
 			if( !initialOffset ) {
 				initialOffset = $el.offset().top;
@@ -84,12 +87,26 @@
 				$el.data( S.keys.position, position );
 			}
 
-			elTop = parseInt( $( el ).css( 'top' ), 10 ) || 0;
-			elBottom = parseInt( $( el ).css( 'bottom' ), 10 ) || 0;
+			function isFixedToTop() {
+				var offsetTop = scroll + elTop;
 
-			if( position.top && initialOffset < ( scroll + elTop ) ||
-				position.bottom && initialOffset > scroll + viewportHeight - ( height || 0 ) - elBottom ) {
+				// Initial Offset Top
+				return initialOffset < offsetTop &&
+					// Container Bottom
+					offsetTop + height <= parentOffset + parentHeight;
+			}
 
+			function isFixedToBottom() {
+				// Initial Offset Top + Height
+				return initialOffset + ( height || 0 ) > scroll + viewportHeight - elBottom &&
+					// Container Top
+					scroll + viewportHeight - elBottom >= parentOffset + ( height || 0 );
+			}
+
+			elTop = parseInt( $el.css( 'top' ), 10 ) || 0;
+			elBottom = parseInt( $el.css( 'bottom' ), 10 ) || 0;
+
+			if( position.top && isFixedToTop() || position.bottom && isFixedToBottom() ) {
 				if( !isAlreadyOn ) {
 					toggle( true );
 				}
@@ -101,7 +118,7 @@
 		},
 		destroy: function( el ) {
 			var $el = $( el );
-			if (S.hasFixSticky()) return;
+			if (S.hasFixSticky()) { return; }
 
 			$( win ).unbind( '.fixedsticky' );
 

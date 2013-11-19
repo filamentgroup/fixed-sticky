@@ -1,4 +1,4 @@
-/*global QUnit:false, module:false, test:false, asyncTest:false, expect:false, start:false, stop:false, ok:false, equal:false, notEqual:false, deepEqual:false, notDeepEqual:false, strictEqual:false, notStrictEqual:false, raises:false, SocialCount:true */
+/* global QUnit:false, module:false, test:false, asyncTest:false, expect:false, start:false, stop:false, ok:false, equal:false, notEqual:false, deepEqual:false, notDeepEqual:false, strictEqual:false, notStrictEqual:false, raises:false, SocialCount:true */
 (function($) {
 
 	/*
@@ -37,7 +37,7 @@
 		$( '#qunit-fixture' ).html(
 				['<style>#sticky { top: 0; }</style>',
 				'<div id="sticky" class="fixedsticky">Sticky</div>',
-				'<div style="width: 100%; height: 2000px">Test</div>'].join( '' ) );
+				'<div style="height: 2000px">Test</div>'].join( '' ) );
 
 		var $sticky = $( '#sticky' );
 		$sticky.fixedsticky();
@@ -51,7 +51,7 @@
 	test( 'Standard Bottom', function() {
 		$( '#qunit-fixture' ).html(
 				['<style>#sticky { bottom: 0; }</style>',
-				'<div style="width: 100%; height: 2000px">Test</div>',
+				'<div style="height: 2000px">Test</div>',
 				'<div id="sticky" class="fixedsticky">Sticky</div>'].join( '' ) );
 
 		var $sticky = $( '#sticky' );
@@ -63,11 +63,11 @@
 		equal( Math.round( $sticky.offset().top ), 1000 + $( window ).height() - $sticky.height() );
 	});
 
-	test( 'Constrainted to parent (feature not yet implemented)', function() {
+	test( 'Top constrainted to parent bottom', function() {
 		$( '#qunit-fixture' ).html(
 				['<style>#sticky { top: 0; }</style>',
-				'<div style="width: 100%; height: 1000px"><div id="sticky" class="fixedsticky">Sticky</div></div>',
-				'<div style="width: 100%; height: 2000px">Test</div>'].join( '' ) );
+				'<div style="height: 1000px"><div id="sticky" class="fixedsticky">Sticky</div></div>',
+				'<div style="height: 2000px">Test</div>'].join( '' ) );
 
 		var $sticky = $( '#sticky' );
 		$sticky.fixedsticky();
@@ -77,6 +77,25 @@
 		equal( $sticky.css( 'position' ), 'fixed' );
 		equal( $sticky.offset().top, 1000 );
 		$(window).scrollTop( 2000 ).trigger( 'scroll' );
+		equal( $sticky.css( 'position' ), 'static' );
+	});
+
+	test( 'Bottom constrainted to parent top', function() {
+		$( '#qunit-fixture' ).html(
+				['<style>#sticky { bottom: 0; }</style>',
+				'<div style="height: 2000px">Test</div>',
+				'<div><div style="height: 2000px"></div><div id="sticky" class="fixedsticky">Sticky</div></div>'].join( '' ) );
+
+		var $sticky = $( '#sticky' );
+		$sticky.fixedsticky();
+
+		ok( $sticky.hasClass( 'fixedsticky' ) );
+
+		$(window).scrollTop( 3000 ).trigger( 'scroll' );
+		equal( $sticky.css( 'position' ), 'fixed' );
+		equal( Math.round( $sticky.offset().top ), 3000 + $( window ).height() - $sticky.height() );
+
+		$(window).scrollTop( 1000 ).trigger( 'scroll' );
 		equal( $sticky.css( 'position' ), 'static' );
 	});
 
