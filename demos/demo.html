@@ -8,23 +8,42 @@
 		<style>
 			/* Demo CSS */
 			body { font-family: sans-serif; color: #444; margin: 0 auto; padding: 50px 20px; max-width: 600px; }
-
 			.top,
-			.bottom { background: #000; color: #fff; text-align: center; border: solid black; border-width: 1px 0; padding: 1em; width: 100%; max-width: 600px; box-sizing: -webkit-border-box; box-sizing: -moz-border-box; box-sizing: border-box; }
+			.bottom { text-align: center; border: solid black; border-width: 1px 0; padding: 1em; width: 100%; max-width: 600px; box-sizing: -webkit-border-box; box-sizing: -moz-border-box; box-sizing: border-box; }
 
 			/* Fixed-Sticky CSS */
+			.top,
+			.bottom {
+				position: -webkit-sticky;
+				position: -moz-sticky;
+				position: -ms-sticky;
+				position: -o-sticky;
+				position: sticky;
+			}
 			.top {
 				top: 0; 
 			}
 			.bottom {
-				bottom: 1em;
+				bottom: 0;
 			}
 			#top-a {
-				background-color: rgba(255,0,0,.6);
 				top: 1em;
 			}
-			#top-b {
+			#bottom-b {
+				bottom: 1em;
+			}
+
+			/* Demo Colors */
+			#top-a,
+			#bottom-a {
+				background-color: rgba(255,0,0,.6);
+			}
+			#top-b,
+			#bottom-b {
 				background-color: rgba(0,255,0,.6);
+			}
+			.container {
+				background-color: #999;
 			}
 		</style>
 	</head>
@@ -34,16 +53,16 @@
 		
 		<p>A test page for the <a href="https://github.com/filamentgroup/fixed-sticky">Fixed-sticky project</a></p>
 
-		<div style="height: 600px">
+		<div class="container" style="height: 600px; padding-top: 100px;">
 			<div class="top fixedsticky" id="top-a">
-				Fixed to viewport top A, when supported.
+				Fixed to viewport top A.
 			</div>
 		</div>
 
 		<p>This test page includes a test to qualify the application of CSS <code>position:sticky</code>, which enjoys limited browser support. It works with the <a href="https://github.com/filamentgroup/fixed-fixed">Fixed-fixed project</a> (as of v0.1.2 of fixed-fixed).</p>
 		
 		<div class="top fixedsticky" id="top-b">
-			Fixed to viewport top B, when supported.
+			Fixed to viewport top B.
 		</div>
 
 		<p>And now, some fake content to allow scrolling...</p>
@@ -86,8 +105,14 @@
 			 <li>Aliquam tincidunt mauris eu risus.</li>
 		</ol>
 
-		<div class="bottom fixedsticky">
-			Fixed to viewport bottom (1em above), when supported.
+		<div id="bottom-b" class="bottom fixedsticky">
+			Fixed to viewport bottom B (1em above).
+		</div>
+		<div class="container">
+			<div style="height: 600px"></div>
+			<div id="bottom-a" class="bottom fixedsticky">
+				Fixed to viewport bottom A.
+			</div>
 		</div>
 
 		<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p></blockquote>
@@ -173,8 +198,8 @@
 		<h2>Header Level 2</h2>
 
 		<ol>
-			 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-			 <li>Aliquam tincidunt mauris eu risus.</li>
+			<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+			<li>Aliquam tincidunt mauris eu risus.</li>
 		</ol>
 		
 		<script src="../bower_components/jquery/jquery.js"></script>
