@@ -5,47 +5,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title>Fixed Sticky</title>
 		<link rel="stylesheet" href="../fixedsticky.css">
-		<style>
-			/* Demo CSS */
-			body { font-family: sans-serif; color: #444; margin: 0 auto; padding: 50px 20px; max-width: 600px; }
-			.top,
-			.bottom { text-align: center; border: solid black; border-width: 1px 0; padding: 1em; width: 100%; max-width: 600px; box-sizing: -webkit-border-box; box-sizing: -moz-border-box; box-sizing: border-box; }
-
-			/* Fixed-Sticky CSS */
-			.top,
-			.bottom {
-				position: -webkit-sticky;
-				position: -moz-sticky;
-				position: -ms-sticky;
-				position: -o-sticky;
-				position: sticky;
-			}
-			.top {
-				top: 0; 
-			}
-			.bottom {
-				bottom: 0;
-			}
-			#top-a {
-				top: 1em;
-			}
-			#bottom-b {
-				bottom: 1em;
-			}
-
-			/* Demo Colors */
-			#top-a,
-			#bottom-a {
-				background-color: rgba(255,0,0,.6);
-			}
-			#top-b,
-			#bottom-b {
-				background-color: rgba(0,255,0,.6);
-			}
-			.container {
-				background-color: #999;
-			}
-		</style>
+		<link rel="stylesheet" href="demo.css">
 	</head>
 	<body>
 		
@@ -85,16 +45,6 @@
 			 <li>Aliquam tincidunt mauris eu risus.</li>
 		</ul>
 
-		<pre><code>
-		#header h1 a { 
-			display: block; 
-			width: 300px; 
-			height: 80px; 
-		}
-		</code></pre>
-
-
-
 
 		<p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
 
@@ -124,16 +74,6 @@
 			 <li>Aliquam tincidunt mauris eu risus.</li>
 		</ul>
 
-		<pre><code>
-		#header h1 a { 
-			display: block; 
-			width: 300px; 
-			height: 80px; 
-		}
-		</code></pre>
-
-
-
 
 		<p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
 
@@ -153,16 +93,6 @@
 			 <li>Aliquam tincidunt mauris eu risus.</li>
 		</ul>
 
-		<pre><code>
-		#header h1 a { 
-			display: block; 
-			width: 300px; 
-			height: 80px; 
-		}
-		</code></pre>
-
-
-
 
 		<p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
 
@@ -181,16 +111,6 @@
 			 <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
 			 <li>Aliquam tincidunt mauris eu risus.</li>
 		</ul>
-
-		<pre><code>
-		#header h1 a { 
-			display: block; 
-			width: 300px; 
-			height: 80px; 
-		}
-		</code></pre>
-
-
 
 
 		<p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
@@ -206,7 +126,6 @@
 		<script src="../bower_components/filament-fixed/fixedfixed.js"></script>
 		<script src="../fixedsticky.js"></script>
 		<script>
-		FixedSticky.tests.sticky = false;
 		$( '.top, .bottom' ).fixedsticky();
 		</script>
 	</body>

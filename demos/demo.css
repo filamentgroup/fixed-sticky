@@ -1,0 +1,54 @@
+/* Demo CSS */
+body {
+	font-family: sans-serif;
+	color: #444;
+	margin: 0 auto;
+	padding: 50px 2%;
+	max-width: 600px;
+}
+
+.top,
+.bottom {
+	text-align: center;
+	border: solid black;
+	border-width: 1px 0;
+	padding: 1em;
+	width: 100%;
+	max-width: 600px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.top.fixedsticky-on,
+.bottom.fixedsticky-on {
+	width: 96%;
+}
+
+/* Fixed-Sticky CSS */
+.top {
+	top: 0; 
+}
+.bottom {
+	bottom: 0;
+}
+#top-a {
+	top: 32px;
+}
+#bottom-b {
+	bottom: 16px;
+}
+
+/* Demo Colors */
+#top-a,
+#bottom-a {
+	background-color: #f00;
+	background-color: rgba(255,0,0,.6);
+}
+#top-b,
+#bottom-b {
+	background-color: #0f0;
+	background-color: rgba(0,255,0,.6);
+}
+.container {
+	background-color: #999;
+}
