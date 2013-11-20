@@ -14,10 +14,15 @@
 		return mStyle[ property ].indexOf( value ) !== -1;
 	}
 
+	function getPx( unit ) {
+		return parseInt( unit, 10 ) || 0;
+	}
+
 	var S = {
 		classes: {
 			plugin: 'fixedsticky',
 			active: 'fixedsticky-on',
+			inactive: 'fixedsticky-off',
 			clone: 'fixedsticky-dummy',
 			withoutFixedFixed: 'fixedsticky-withoutfixedfixed'
 		},
@@ -37,9 +42,11 @@
 				win.document.documentElement[ method ] :
 				win.document.body[ method ];
 		},
-		hasFixSticky: function() {
-			// Check  native sticky, check fixed and if fixed-fixed is also included on the page and is supported
-			return !!( S.tests.sticky || !S.tests.fixed || win.FixedFixed && !$( win.document.documentElement ).hasClass( 'fixed-supported' ) );
+		bypass: function() {
+			// Check native sticky, check fixed and if fixed-fixed is also included on the page and is supported
+			return ( S.tests.sticky && !S.optOut ) ||
+				!S.tests.fixed ||
+				win.FixedFixed && !$( win.document.documentElement ).hasClass( 'fixed-supported' );
 		},
 		update: function( el ) {
 			if( !el.offsetWidth ) { return; }
@@ -50,7 +57,8 @@
 				scroll = S.getScrollTop(),
 				isAlreadyOn = $el.is( '.' + S.classes.active ),
 				toggle = function( turnOn ) {
-					$el[ turnOn ? 'addClass' : 'removeClass' ]( S.classes.active );
+					$el[ turnOn ? 'addClass' : 'removeClass' ]( S.classes.active )
+						[ !turnOn ? 'addClass' : 'removeClass' ]( S.classes.inactive );
 				},
 				viewportHeight = $( window ).height(),
 				position = $el.data( S.keys.position ),
@@ -103,8 +111,8 @@
 					scroll + viewportHeight - elBottom >= parentOffset + ( height || 0 );
 			}
 
-			elTop = parseInt( $el.css( 'top' ), 10 ) || 0;
-			elBottom = parseInt( $el.css( 'bottom' ), 10 ) || 0;
+			elTop = getPx( $el.css( 'top' ) );
+			elBottom = getPx( $el.css( 'bottom' ) );
 
 			if( position.top && isFixedToTop() || position.bottom && isFixedToBottom() ) {
 				if( !isAlreadyOn ) {
@@ -118,7 +126,9 @@
 		},
 		destroy: function( el ) {
 			var $el = $( el );
-			if (S.hasFixSticky()) { return; }
+			if (S.bypass()) {
+				return;
+			}
 
 			$( win ).unbind( '.fixedsticky' );
 
@@ -126,13 +136,14 @@
 				$( this )
 					.removeData( [ S.keys.offset, S.keys.position ] )
 					.removeClass( S.classes.active )
+					.removeClass( S.classes.inactive )
 					.nextUntil( S.classes.clone ).remove();
 			});
 		},
 		init: function( el ) {
 			var $el = $( el );
 
-			if( S.hasFixSticky() ) {
+			if( S.bypass() ) {
 				return;
 			}
 

@@ -6,9 +6,8 @@
 	position: sticky;
 }
 /* When position: sticky is supported but native behavior is ignored */
-/* Assume: browsers that support `position: sticky` also support :not() */
-.fixedsticky-withoutfixedfixed :not(.fixedsticky-on),
-.fixed-supported :not(.fixedsticky-on) {
+.fixedsticky-withoutfixedfixed .fixedsticky-off,
+.fixed-supported .fixedsticky-off {
 	position: static;
 }
 .fixedsticky-withoutfixedfixed .fixedsticky-on,
