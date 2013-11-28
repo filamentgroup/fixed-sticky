@@ -62,7 +62,7 @@ These tests were performed using fixed-sticky with fixed-fixed. It’s safest to
 ### Polyfilled
 
 * Internet Explorer 7, 8, 9, 10
-* Firefox 24
+* Firefox 24, Firefox 17 ESR
 * Chrome 29
 * Safari 6.0.5
 * Opera 12.16
