@@ -5,7 +5,11 @@
 
 ## Explanation
 
-CSS position:sticky is really in its infancy in terms of browser support. In stock browsers, it is currently only available in iOS 6. In Chrome you can enable it by navigating to `chrome://flags` and enabling experimental “WebKit features” or “Web Platform features” (Canary).
+CSS position:sticky is really in its infancy in terms of browser support. In stock browsers, it is currently only available in iOS 6.
+
+In Chrome you can enable it by navigating to `chrome://flags` and enabling experimental “WebKit features” or “Web Platform features” (Canary).
+
+In Firefox you you can go to `about:config` and set `layout.css.sticky.enabled` to "true".
 
 ## Usage
 
