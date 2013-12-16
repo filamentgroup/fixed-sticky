@@ -137,7 +137,7 @@
 					.removeData( [ S.keys.offset, S.keys.position ] )
 					.removeClass( S.classes.active )
 					.removeClass( S.classes.inactive )
-					.nextUntil( S.classes.clone ).remove();
+					.next( '.' + S.classes.clone ).remove();
 			});
 		},
 		init: function( el ) {
