@@ -57,7 +57,8 @@
 				console.log($(this).data());
 				$( this )
 					.removeData( [ S.keys.offset, S.keys.position ] )
-					.removeClass( S.classes.active + ' ' + S.classes.inactive );
+					.removeClass( S.classes.active + ' ' + S.classes.inactive )
+					.next( '.' + S.classes.clone ).remove();
 				S.update( this );
 			});
 		},
@@ -87,7 +88,7 @@
 				initialOffset = $el.offset().top;
 				width = $el.outerWidth();
 				$el.data( S.keys.offset, initialOffset );
-				$el.after( $( '<div>' ).addClass( S.classes.clone ).height( height ).width(width) );
+				$el.after( $( '<div>' ).addClass( S.classes.clone ).height( height ).width( width ) );
 			}
 
 			if( !position ) {
