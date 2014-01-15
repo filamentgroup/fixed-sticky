@@ -18,6 +18,8 @@
 		return parseInt( unit, 10 ) || 0;
 	}
 
+	var uniqueIdCounter = 0;
+
 	var S = {
 		classes: {
 			plugin: 'fixedsticky',
@@ -28,7 +30,8 @@
 		},
 		keys: {
 			offset: 'fixedStickyOffset',
-			position: 'fixedStickyPosition'
+			position: 'fixedStickyPosition',
+			id: 'fixedStickyId'
 		},
 		tests: {
 			sticky: featureTest( 'position', 'sticky' ),
@@ -48,10 +51,21 @@
 				!S.tests.fixed ||
 				win.FixedFixed && !$( win.document.documentElement ).hasClass( 'fixed-supported' );
 		},
+		refresh: function( el ) {
+			var $el = $( el );
+			return $el.each(function() {
+				console.log($(this).data());
+				$( this )
+					.removeData( [ S.keys.offset, S.keys.position ] )
+					.removeClass( S.classes.active + ' ' + S.classes.inactive );
+				S.update( this );
+			});
+		},
 		update: function( el ) {
 			if( !el.offsetWidth ) { return; }
 
-			var $el = $( el ),
+			var width,
+				$el = $( el ),
 				height = $el.outerHeight(),
 				initialOffset = $el.data( S.keys.offset ),
 				scroll = S.getScrollTop(),
@@ -71,8 +85,9 @@
 
 			if( !initialOffset ) {
 				initialOffset = $el.offset().top;
+				width = $el.outerWidth();
 				$el.data( S.keys.offset, initialOffset );
-				$el.after( $( '<div>' ).addClass( S.classes.clone ).height( height ) );
+				$el.after( $( '<div>' ).addClass( S.classes.clone ).height( height ).width(width) );
 			}
 
 			if( !position ) {
@@ -130,11 +145,13 @@
 				return;
 			}
 
-			$( win ).unbind( '.fixedsticky' );
-
 			return $el.each(function() {
-				$( this )
-					.removeData( [ S.keys.offset, S.keys.position ] )
+				var $this = $( this );
+				var id = $this.data( S.keys.id );
+				$( win ).unbind( '.fixedsticky' + id );
+
+				$this
+					.removeData( [ S.keys.offset, S.keys.position, S.keys.id ] )
 					.removeClass( S.classes.active )
 					.removeClass( S.classes.inactive )
 					.next( '.' + S.classes.clone ).remove();
@@ -149,15 +166,20 @@
 
 			return $el.each(function() {
 				var _this = this;
-				$( win ).bind( 'scroll.fixedsticky', function() {
-					S.update( _this );
-				}).trigger( 'scroll.fixedsticky' );
+				var id = uniqueIdCounter++;
+				$( this ).data( S.keys.id, id );
 
-				$( win ).bind( 'resize.fixedsticky', function() {
+				$( win ).bind( 'scroll.fixedsticky' + id, function() {
+					S.update( _this );
+				}).trigger( 'scroll.fixedsticky' + id );
+
+				$( win ).bind( 'resize.fixedsticky' + id , function() {
 					if( $el.is( '.' + S.classes.active ) ) {
 						S.update( _this );
 					}
 				});
+
+
 			});
 		}
 	};
