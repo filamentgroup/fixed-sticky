@@ -54,7 +54,6 @@
 		refresh: function( el ) {
 			var $el = $( el );
 			return $el.each(function() {
-				console.log($(this).data());
 				$( this )
 					.removeData( [ S.keys.offset, S.keys.position ] )
 					.removeClass( S.classes.active + ' ' + S.classes.inactive )
