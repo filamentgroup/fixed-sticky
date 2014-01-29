@@ -33,9 +33,10 @@ Next, add the events and initialize your sticky nodes:
 
 ## Native `position: sticky` Caveats
 
+* `sticky` elements are constrained to the dimensions of their parents. This plugin behaves the same.
 * iOS (and Chrome) do not support `position: sticky;` with `display: inline-block;`.
-* `sticky` elements are constrained to the dimensions of their parents.
 * This plugin (and Chrome’s implementation) does not (yet) support use with `thead` and `tfoot`.
+* Native `sticky` anchors to parent elements using their own overflow. This means scrolling the element fixes the sticky element to the parent dimensions. This plugin does not support overflow on parent elements.
 
 ### Using the polyfill instead of native
 
@@ -45,7 +46,6 @@ If you’re having weird issues with native `position: sticky`, you can tell fix
     FixedSticky.tests.sticky = false;
 
 * [`demo-opt-out-native.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo-opt-out-native.html) shows this behavior.
-
 
 ## Installation
 
