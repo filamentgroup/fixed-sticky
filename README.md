@@ -34,6 +34,7 @@ Next, add the events and initialize your sticky nodes:
 ## Native `position: sticky` Caveats
 
 * `sticky` elements are constrained to the dimensions of their parents. This plugin behaves the same.
+* Any non-default value (not `visible`) for `overflow`, `overflow-x`, or `overflow-y` on the parent element will disable `position: sticky` (via [@davatron5000](https://twitter.com/davatron5000/status/434357818498351104)).
 * iOS (and Chrome) do not support `position: sticky;` with `display: inline-block;`.
 * This plugin (and Chrome’s implementation) does not (yet) support use with `thead` and `tfoot`.
 * Native `sticky` anchors to parent elements using their own overflow. This means scrolling the element fixes the sticky element to the parent dimensions. This plugin does not support overflow on parent elements.
