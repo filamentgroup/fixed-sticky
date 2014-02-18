@@ -151,7 +151,9 @@
 				var _this = this;
 				$( win ).bind( 'scroll.fixedsticky', function() {
 					S.update( _this );
-				}).trigger( 'scroll.fixedsticky' );
+				});
+
+				S.update( this );
 
 				$( win ).bind( 'resize.fixedsticky', function() {
 					if( $el.is( '.' + S.classes.active ) ) {
