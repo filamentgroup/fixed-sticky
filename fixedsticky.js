@@ -69,7 +69,7 @@
 				parentOffset = $parent.offset().top,
 				parentHeight = $parent.outerHeight();
 
-			if( !initialOffset ) {
+			if( initialOffset === undefined ) {
 				initialOffset = $el.offset().top;
 				$el.data( S.keys.offset, initialOffset );
 				$el.after( $( '<div>' ).addClass( S.classes.clone ).height( height ) );
@@ -137,7 +137,7 @@
 					.removeData( [ S.keys.offset, S.keys.position ] )
 					.removeClass( S.classes.active )
 					.removeClass( S.classes.inactive )
-					.nextUntil( S.classes.clone ).remove();
+					.next( '.' + S.classes.clone ).remove();
 			});
 		},
 		init: function( el ) {
@@ -151,7 +151,9 @@
 				var _this = this;
 				$( win ).bind( 'scroll.fixedsticky', function() {
 					S.update( _this );
-				}).trigger( 'scroll.fixedsticky' );
+				});
+
+				S.update( this );
 
 				$( win ).bind( 'resize.fixedsticky', function() {
 					if( $el.is( '.' + S.classes.active ) ) {
