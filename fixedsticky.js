@@ -69,7 +69,7 @@
 				parentOffset = $parent.offset().top,
 				parentHeight = $parent.outerHeight();
 
-			if( !initialOffset ) {
+			if( initialOffset === undefined ) {
 				initialOffset = $el.offset().top;
 				$el.data( S.keys.offset, initialOffset );
 				$el.after( $( '<div>' ).addClass( S.classes.clone ).height( height ) );
