@@ -3,6 +3,9 @@
 - (c)2013 @zachleat, Filament Group
 - MIT license
 
+[![Build Status](https://travis-ci.org/filamentgroup/fixed-sticky.svg?branch=master)](https://travis-ci.org/filamentgroup/fixed-sticky)
+
+
 ## Explanation
 
 CSS position:sticky is really in its infancy in terms of browser support. In stock browsers, it is currently only available in iOS 6.
