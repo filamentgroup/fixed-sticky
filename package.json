@@ -4,7 +4,8 @@
   "description": "A position: sticky polyfill that works with filamentgroup/fixed-fixed for a safer position:fixed fallback.",
   "main": "fixedsticky.js",
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+		"postinstall": "./node_modules/.bin/bower install"
   },
   "repository": {
     "type": "git",
