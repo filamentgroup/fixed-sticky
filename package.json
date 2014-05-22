@@ -4,7 +4,7 @@
 	"description": "A position: sticky polyfill that works with filamentgroup/fixed-fixed for a safer position:fixed fallback.",
 	"main": "fixedsticky.js",
 	"scripts": {
-		"test": "grunt test",
+		"test": "./node_modules/.bin/grunt test",
 		"postinstall": "./node_modules/.bin/bower install"
 	},
 	"repository": {
@@ -20,6 +20,7 @@
 		"url": "https://github.com/filamentgroup/fixed-sticky/issues"
 	},
 	"devDependencies": {
+		"grunt-cli": "~0.1.13",
 		"grunt": "~0.4.1",
 		"matchdep": "~0.3.0",
 		"grunt-contrib-clean": "~0.4.0",
