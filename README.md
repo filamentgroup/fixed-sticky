@@ -1,10 +1,11 @@
-# Fixed-sticky: a CSS `position:sticky` polyfill
+# Fixed-sticky [![Build Status](https://travis-ci.org/filamentgroup/fixed-sticky.svg?branch=master)](https://travis-ci.org/filamentgroup/fixed-sticky)
 
-- (c)2013 @zachleat, Filament Group
+A CSS `position:sticky` polyfill.
+
+[![Filament Group](http://filamentgroup.com/images/fg-logo-positive-sm-crop.png) ](http://www.filamentgroup.com/)
+
+- ©2013 @zachleat, Filament Group
 - MIT license
-
-[![Build Status](https://travis-ci.org/filamentgroup/fixed-sticky.svg?branch=master)](https://travis-ci.org/filamentgroup/fixed-sticky)
-
 
 ## Explanation
 
