@@ -4,7 +4,7 @@ A CSS `position:sticky` polyfill.
 
 [![Filament Group](http://filamentgroup.com/images/fg-logo-positive-sm-crop.png) ](http://www.filamentgroup.com/)
 
-- ©2013 @zachleat, Filament Group
+- ©2013 [@zachleat](https://github.com/zachleat), Filament Group
 - MIT license
 
 ## Explanation
