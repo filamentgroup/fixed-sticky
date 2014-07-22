@@ -13,6 +13,13 @@ body {
 .demo-main p {
 	padding: 0 15px;
 }
+.demo-main h1,
+.demo-main h2,
+.demo-main h3,
+.demo-main h4,
+.demo-main h5 {
+	margin-left: 15px;
+}
 
 .top,
 .bottom {
