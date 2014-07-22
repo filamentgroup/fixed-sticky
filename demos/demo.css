@@ -1,5 +1,6 @@
 /* Demo CSS */
 body {
+	margin: 0;
 	font-family: sans-serif;
 	color: #444;
 }
@@ -24,7 +25,7 @@ body {
 }
 .top.fixedsticky-on,
 .bottom.fixedsticky-on {
-	width: 96%;
+	width: 93.5%;
 }
 
 /* Fixed-Sticky CSS */
