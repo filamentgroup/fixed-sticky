@@ -10,6 +10,27 @@
 .fixed-supported .fixedsticky-off {
 	position: static;
 }
+/* For transitions between states */
+.fixedsticky-withoutfixedfixed .fixedsticky-container,
+.fixed-supported .fixedsticky-container {
+	position: relative;
+}
+.fixedsticky-withoutfixedfixed .fixedsticky-container .fixedsticky-off-transition-top,
+.fixedsticky-withoutfixedfixed .fixedsticky-container .fixedsticky-off-transition-bottom,
+.fixed-supported .fixedsticky-container .fixedsticky-off-transition-top,
+.fixed-supported .fixedsticky-container .fixedsticky-off-transition-bottom {
+	position: absolute;
+}
+.fixedsticky-withoutfixedfixed .fixedsticky-container .fixedsticky-off-transition-top,
+.fixed-supported .fixedsticky-container .fixedsticky-off-transition-top {
+	top: 0 !important;
+	bottom: auto !important;
+}
+.fixedsticky-withoutfixedfixed .fixedsticky-container .fixedsticky-off-transition-bottom,
+.fixed-supported .fixedsticky-container .fixedsticky-off-transition-bottom {
+	top: auto !important;
+	bottom: 0 !important;
+}
 .fixedsticky-withoutfixedfixed .fixedsticky-on,
 .fixed-supported .fixedsticky-on {
 	position: fixed;
