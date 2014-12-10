@@ -96,3 +96,4 @@ These tests were performed using fixed-sticky with fixed-fixed. It’s safest to
 
 * `v0.1.0`: Initial release.
 * `v0.1.3`: Bug fixes, rudimentary tests, destroy method.
+* `v0.1.4`: Added CSS classes to let stylesheets determine no-support/native-support/polyfill-support
