@@ -142,7 +142,7 @@
 
 			$( win ).unbind( '.fixedsticky' );
 
-			$( win.document.documentElement ).removeClass( '"' + S.classes.polyFillOptional + '' + S.classes.polyFillActive + '"' );
+			$( win.document.documentElement ).removeClass( S.classes.polyFillActive );
 
 			return $el.each(function() {
 				$( this )
