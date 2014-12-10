@@ -14,6 +14,12 @@
 		return mStyle[ property ].indexOf( value ) !== -1;
 	}
 
+	function topBottomTest( el ) {
+		// Some browsers require fixed/absolute to report accurate top/left values.
+		var $el = $( el );
+		return $el.css( 'top' ) !== 'auto' || $el.css( 'bottom' ) !== 'auto';
+	}
+
 	function getPx( unit ) {
 		return parseInt( unit, 10 ) || 0;
 	}
@@ -77,11 +83,13 @@
 				$el.after( $( '<div>' ).addClass( S.classes.clone ).height( height ) );
 			}
 
-			if( !position ) {
-				// Some browsers require fixed/absolute to report accurate top/left values.
-				skipSettingToFixed = $el.css( 'top' ) !== 'auto' || $el.css( 'bottom' ) !== 'auto';
+			if( topBottomTest( el ) ) {
+				$( win.document.documentElement ).addClass( S.classes.polyFillActive );
+			}
 
-				if( !skipSettingToFixed ) {
+			if( !position ) {
+
+				if( !topBottomTest( el ) ) {
 					$el.css( 'position', 'fixed' );
 				}
 
@@ -90,7 +98,7 @@
 					bottom: $el.css( 'bottom' ) !== 'auto'
 				};
 
-				if( !skipSettingToFixed ) {
+				if( !topBottomTest( el ) ) {
 					$el.css( 'position', '' );
 				}
 
@@ -134,7 +142,7 @@
 
 			$( win ).unbind( '.fixedsticky' );
 
-			$( win.document.documentElement ).removeClass( S.classes.polyFillActive );
+			$( win.document.documentElement ).removeClass( '"' + S.classes.polyFillOptional + '' + S.classes.polyFillActive + '"' );
 
 			return $el.each(function() {
 				$( this )
@@ -151,8 +159,6 @@
 				$( win.document.documentElement ).addClass( S.classes.polyFillOptional );
 				return;
 			}
-
-			$( win.document.documentElement ).addClass( S.classes.polyFillActive );
 
 			return $el.each(function() {
 				var _this = this;
