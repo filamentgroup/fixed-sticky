@@ -24,6 +24,8 @@
 			active: 'fixedsticky-on',
 			inactive: 'fixedsticky-off',
 			clone: 'fixedsticky-dummy',
+			polyFillOptional: 'fixedsticky-native',
+			polyFillActive: 'fixedsticky-polyfilled',
 			withoutFixedFixed: 'fixedsticky-withoutfixedfixed'
 		},
 		keys: {
@@ -132,6 +134,8 @@
 
 			$( win ).unbind( '.fixedsticky' );
 
+			$( win.document.documentElement ).removeClass( '"' + S.classes.polyFillOptional + '' + S.classes.polyFillActive + '"' );
+
 			return $el.each(function() {
 				$( this )
 					.removeData( [ S.keys.offset, S.keys.position ] )
@@ -144,8 +148,11 @@
 			var $el = $( el );
 
 			if( S.bypass() ) {
+				$( win.document.documentElement ).addClass( S.classes.polyFillOptional );
 				return;
 			}
+
+			$( win.document.documentElement ).addClass( S.classes.polyFillActive );
 
 			return $el.each(function() {
 				var _this = this;
