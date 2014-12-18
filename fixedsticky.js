@@ -14,6 +14,12 @@
 		return mStyle[ property ].indexOf( value ) !== -1;
 	}
 
+	function topBottomTest( el ) {
+		// Some browsers require fixed/absolute to report accurate top/left values.
+		var $el = (el instanceof jQuery ? el : $( el ) );
+		return $el.css( 'top' ) !== 'auto' || $el.css( 'bottom' ) !== 'auto';
+	}
+
 	function getPx( unit ) {
 		return parseInt( unit, 10 ) || 0;
 	}
@@ -23,16 +29,57 @@
 			plugin: 'fixedsticky',
 			active: 'fixedsticky-on',
 			inactive: 'fixedsticky-off',
+			opposite: 'fixedsticky-opposite',
 			clone: 'fixedsticky-dummy',
+			polyFillOptional: 'fixedsticky-native',
+			polyFillActive: 'fixedsticky-polyfilled',
 			withoutFixedFixed: 'fixedsticky-withoutfixedfixed'
 		},
 		keys: {
 			offset: 'fixedStickyOffset',
-			position: 'fixedStickyPosition'
+			position: 'fixedStickyPosition',
+			state: 'fixedStickyState',
+			elHeight: 'fixedStickyElHeight',
+			viewportHeight: 'fixedStickyViewportHeight',
+			parentOffset: 'fixedStickyParentOffset',
+			parentHeight: 'fixedStickyParentHeight',
+			fudgeTop: 'fixedstickyfudgetop'
 		},
 		tests: {
 			sticky: featureTest( 'position', 'sticky' ),
 			fixed: featureTest( 'position', 'fixed', true )
+		},
+		reCalc: function( el ) {
+			var $el = (el instanceof jQuery ? el : $( el ) ),
+				$parent = $el.parent();
+			$el.data( S.keys.elHeight, $el.outerHeight(true) );
+			$el.data( S.keys.viewportHeight, $( window ).height() );
+			$el.data( S.keys.parentOffset, $parent.offset().top );
+			$el.data( S.keys.parentHeight, $parent.outerHeight() );
+		},
+		firstCalc: function( el ) {
+			var $el = (el instanceof jQuery ? el : $( el ) ),
+				position,
+				offset;
+
+			position = {
+				top: $el.css( 'top' ) !== 'auto',
+				bottom: $el.css( 'bottom' ) !== 'auto'
+			};
+			$el.data( S.keys.position, position );
+
+			if (position.bottom) {
+				offset = getPx( $el.css( 'bottom' ) );
+			} else {
+				offset = getPx( $el.css( 'top' ) );
+			}
+			$el.data( S.keys.offset, offset );
+
+            if (!$el.data(S.keys.fudgeTop)) {
+                $el.data(S.keys.fudgeTop, 0);
+            }
+
+			S.reCalc( el );
 		},
 		// Thanks jQuery!
 		getScrollTop: function() {
@@ -49,102 +96,132 @@
 				win.FixedFixed && !$( win.document.documentElement ).hasClass( 'fixed-supported' );
 		},
 		update: function( el ) {
-			if( !el.offsetWidth ) { return; }
+			var $el = (el instanceof jQuery ? el : $( el ) );
+	  
+			// if update has been called outside of fixedSticky (eg a seperate event has triggered a reCalc/reUpdate), and this element is not initialised (eg it's being dealt with natively), exit.
+			if (!$el.data( S.keys.position )) {
+				return;
+			}
 
-			var $el = $( el ),
-				height = $el.outerHeight(),
-				initialOffset = $el.data( S.keys.offset ),
+			S.reCalc( el );
+
+			var $parent = $el.parent(),
 				scroll = S.getScrollTop(),
-				isAlreadyOn = $el.is( '.' + S.classes.active ),
-				toggle = function( turnOn ) {
-					$el[ turnOn ? 'addClass' : 'removeClass' ]( S.classes.active )
-						[ !turnOn ? 'addClass' : 'removeClass' ]( S.classes.inactive );
-				},
-				viewportHeight = $( window ).height(),
-				position = $el.data( S.keys.position ),
-				skipSettingToFixed,
-				elTop,
-				elBottom,
-				$parent = $el.parent(),
-				parentOffset = $parent.offset().top,
-				parentHeight = $parent.outerHeight();
+				offset 	=	$el.data( S.keys.offset ),
+				position 		=	$el.data( S.keys.position ),
+				state 			=	$el.data( S.keys.state ),
+				elHeight 		=	$el.data( S.keys.elHeight ),
+				viewportHeight 	=	$el.data( S.keys.viewportHeight ),
+				parentOffset 	=	$el.data( S.keys.parentOffset ),
+				parentHeight 	=	$el.data( S.keys.parentHeight ),
+				fudgeTop 		=	$el.data(S.keys.fudgeTop);
 
-			if( initialOffset === undefined ) {
-				initialOffset = $el.offset().top;
-				$el.data( S.keys.offset, initialOffset );
-				$el.after( $( '<div>' ).addClass( S.classes.clone ).height( height ) );
-			}
+			function toggle ( newState ) {
+				$el[ newState=='sticky' ? 'addClass' : 'removeClass' ]( S.classes.active )
+					[ newState=='initial' ? 'addClass' : 'removeClass' ]( S.classes.inactive )
+					[ newState=='opposite' ? 'addClass' : 'removeClass' ]( S.classes.opposite );
+				$el.data( S.keys.state, newState );
+			};
 
-			if( !position ) {
-				// Some browsers require fixed/absolute to report accurate top/left values.
-				skipSettingToFixed = $el.css( 'top' ) !== 'auto' || $el.css( 'bottom' ) !== 'auto';
-
-				if( !skipSettingToFixed ) {
-					$el.css( 'position', 'fixed' );
+			function offTheTop() {
+				if ( position.bottom ) {
+					//return scroll + viewportHeight + offset < parentOffset + ( elHeight || 0 );
+					return scroll + viewportHeight  < parentOffset + elHeight + offset;
+				} else {
+					var offsetTop = scroll + offset - fudgeTop;
+					// Initial Offset Top
+					return offset + parentOffset >= offsetTop;
 				}
+			}
 
-				position = {
-					top: $el.css( 'top' ) !== 'auto',
-					bottom: $el.css( 'bottom' ) !== 'auto'
-				};
-
-				if( !skipSettingToFixed ) {
-					$el.css( 'position', '' );
+			function offTheBottom() {
+				if ( position.bottom ) {
+					return scroll + viewportHeight > parentOffset + parentHeight ;
+				} else {
+					var offsetTop = scroll;
+					// Initial Offset Top
+					return offsetTop + elHeight > parentOffset + parentHeight - offset;
 				}
-
-				$el.data( S.keys.position, position );
 			}
 
-			function isFixedToTop() {
-				var offsetTop = scroll + elTop;
-
-				// Initial Offset Top
-				return initialOffset < offsetTop &&
-					// Container Bottom
-					offsetTop + height <= parentOffset + parentHeight;
+			function unFix() {
+				$el.attr('style',false);
 			}
 
-			function isFixedToBottom() {
-				// Initial Offset Top + Height
-				return initialOffset + ( height || 0 ) > scroll + viewportHeight - elBottom &&
-					// Container Top
-					scroll + viewportHeight - elBottom >= parentOffset + ( height || 0 );
+			function fixToOpposite() {
+				if ( position.bottom ) {
+					$el.css({
+						'position' : 'absolute',
+						'top': 0,
+						'bottom' : 'auto'
+					});
+				} else {
+					$el.css({
+						'position' : 'absolute',
+						'top': 'auto',
+						'bottom': 0
+					});
+				}
 			}
 
-			elTop = getPx( $el.css( 'top' ) );
-			elBottom = getPx( $el.css( 'bottom' ) );
-
-			if( position.top && isFixedToTop() || position.bottom && isFixedToBottom() ) {
-				if( !isAlreadyOn ) {
-					toggle( true );
+			if( offTheTop() ) {
+				//console.log('topZone');
+				if( state != 'initial' ) {
+					toggle( 'initial' );
+					if ( position.bottom ) {
+						fixToOpposite();
+					} else {
+						unFix();
+					}
+				}
+			} else if( offTheBottom() ) {
+				//console.log('bottomZone');
+				if( state != 'opposite' ) {
+					toggle( 'opposite' );
+					if ( position.top ) {
+						fixToOpposite();
+					} else {
+						unFix();
+					}
 				}
 			} else {
-				if( isAlreadyOn ) {
-					toggle( false );
+				//console.log('stickyZone');
+				if( state != 'sticky' ) {
+					toggle( 'sticky' );
+					unFix();
 				}
 			}
 		},
 		destroy: function( el ) {
-			var $el = $( el );
+			var $el = (el instanceof jQuery ? el : $( el ) );
 			if (S.bypass()) {
 				return;
 			}
 
 			$( win ).unbind( '.fixedsticky' );
 
+			$( win.document.documentElement ).removeClass( S.classes.polyFillActive );
+
 			return $el.each(function() {
 				$( this )
 					.removeData( [ S.keys.offset, S.keys.position ] )
 					.removeClass( S.classes.active )
 					.removeClass( S.classes.inactive )
+					.removeClass( S.classes.opposite )
 					.next( '.' + S.classes.clone ).remove();
 			});
 		},
 		init: function( el ) {
+	  
 			var $el = $( el );
 
 			if( S.bypass() ) {
+				$( win.document.documentElement ).addClass( S.classes.polyFillOptional );
 				return;
+			}
+
+			if( topBottomTest( el ) ) {
+				$( win.document.documentElement ).addClass( S.classes.polyFillActive );
 			}
 
 			return $el.each(function() {
@@ -153,8 +230,12 @@
 					S.update( _this );
 				});
 
-				S.update( this );
+				S.firstCalc( _this );
 
+				$(_this).after( $( '<div>' ).addClass( S.classes.clone ).addClass( $(_this).attr("class").replace('fixedsticky', '') ).height( $(_this).data( S.keys.elHeight ) ) );
+
+				S.update( _this );
+				
 				$( win ).bind( 'resize.fixedsticky', function() {
 					if( $el.is( '.' + S.classes.active ) ) {
 						S.update( _this );
