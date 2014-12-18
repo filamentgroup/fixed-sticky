@@ -11,7 +11,7 @@ A CSS `position:sticky` polyfill.
 
 CSS position:sticky is really in its infancy in terms of browser support. In stock browsers, it is currently only available in iOS 6.
 
-In Chrome you can enable it by navigating to `chrome://flags` and enabling experimental “WebKit features” or “Web Platform features” (Canary).
+~~In Chrome you can enable it by navigating to `chrome://flags` and enabling experimental “WebKit features” or “Web Platform features” (Canary).~~ Chrome temporarily removed their native `position: sticky` implementation.
 
 In Firefox you you can go to `about:config` and set `layout.css.sticky.enabled` to "true".
 
@@ -39,8 +39,8 @@ Next, add the events and initialize your sticky nodes:
 
 * `sticky` elements are constrained to the dimensions of their parents. This plugin behaves the same.
 * Any non-default value (not `visible`) for `overflow`, `overflow-x`, or `overflow-y` on the parent element will disable `position: sticky` (via [@davatron5000](https://twitter.com/davatron5000/status/434357818498351104)).
-* iOS (and Chrome) do not support `position: sticky;` with `display: inline-block;`.
-* This plugin (and Chrome’s implementation) does not (yet) support use with `thead` and `tfoot`.
+* iOS ~~(and Chrome)~~ do not support `position: sticky;` with `display: inline-block;`.
+* This plugin ~~(and Chrome’s implementation)~~ does not (yet) support use with `thead` and `tfoot`.
 * Native `sticky` anchors to parent elements using their own overflow. This means scrolling the element fixes the sticky element to the parent dimensions. This plugin does not support overflow on parent elements.
 
 ### Using the polyfill instead of native
