@@ -42,7 +42,8 @@
 			elHeight: 'fixedStickyElHeight',
 			viewportHeight: 'fixedStickyViewportHeight',
 			parentOffset: 'fixedStickyParentOffset',
-			parentHeight: 'fixedStickyParentHeight'
+			parentHeight: 'fixedStickyParentHeight',
+			fudgeTop: 'fixedstickyfudgetop'
 		},
 		tests: {
 			sticky: featureTest( 'position', 'sticky' ),
@@ -74,6 +75,10 @@
 			}
 			$el.data( S.keys.offset, offset );
 
+            if (!$el.data(S.keys.fudgeTop)) {
+                $el.data(S.keys.fudgeTop, 0);
+            }
+
 			S.reCalc( el );
 		},
 		// Thanks jQuery!
@@ -92,7 +97,7 @@
 		},
 		update: function( el ) {
 			var $el = (el instanceof jQuery ? el : $( el ) );
-      
+	  
 			// if update has been called outside of fixedSticky (eg a seperate event has triggered a reCalc/reUpdate), and this element is not initialised (eg it's being dealt with natively), exit.
 			if (!$el.data( S.keys.position )) {
 				return;
@@ -108,7 +113,8 @@
 				elHeight 		=	$el.data( S.keys.elHeight ),
 				viewportHeight 	=	$el.data( S.keys.viewportHeight ),
 				parentOffset 	=	$el.data( S.keys.parentOffset ),
-				parentHeight 	=	$el.data( S.keys.parentHeight );
+				parentHeight 	=	$el.data( S.keys.parentHeight ),
+				fudgeTop 		=	$el.data(S.keys.fudgeTop);
 
 			function toggle ( newState ) {
 				$el[ newState=='sticky' ? 'addClass' : 'removeClass' ]( S.classes.active )
@@ -122,7 +128,7 @@
 					//return scroll + viewportHeight + offset < parentOffset + ( elHeight || 0 );
 					return scroll + viewportHeight  < parentOffset + elHeight + offset;
 				} else {
-					var offsetTop = scroll + offset;
+					var offsetTop = scroll + offset - fudgeTop;
 					// Initial Offset Top
 					return offset + parentOffset >= offsetTop;
 				}
@@ -206,7 +212,7 @@
 			});
 		},
 		init: function( el ) {
-      
+	  
 			var $el = $( el );
 
 			if( S.bypass() ) {
