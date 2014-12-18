@@ -51,16 +51,6 @@
 				!S.tests.fixed ||
 				win.FixedFixed && !$( win.document.documentElement ).hasClass( 'fixed-supported' );
 		},
-		refresh: function( el ) {
-			var $el = $( el );
-			return $el.each(function() {
-				$( this )
-					.removeData( [ S.keys.offset, S.keys.position ] )
-					.removeClass( S.classes.active + ' ' + S.classes.inactive )
-					.next( '.' + S.classes.clone ).remove();
-				S.update( this );
-			});
-		},
 		update: function( el ) {
 			if( !el.offsetWidth ) { return; }
 
