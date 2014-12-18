@@ -26,6 +26,7 @@ body {
 
 .top,
 .bottom {
+	position: relative;
 	text-align: center;
 	border: solid black;
 	border-width: 1px 0;
@@ -48,10 +49,14 @@ body {
 .bottom {
 	bottom: 0;
 }
-#top-a {
+#top-a.fixedsticky-off,
+#bottom-a.fixedsticky-off {
+	position: static;
+}
+#top-a.fixedsticky-on {
 	top: 32px;
 }
-#bottom-b {
+#bottom-b.fixedsticky-on {
 	bottom: 16px;
 }
 
