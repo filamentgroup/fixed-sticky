@@ -45,7 +45,7 @@ Next, add the events and initialize your sticky nodes:
 
 ### Using the polyfill instead of native
 
-If you’re having weird issues with native `position: sticky`, you can tell fixed-sticky to use the polyfill instead of native. Just override the sticky feature test to always return false.
+If you’re having weird issues with native `position: sticky`, you can tell fixed-sticky to use the polyfill instead of native. Just override the sticky feature test to always return false. Make sure you do this before any calls to `$( '#my-element' ).fixedsticky();`.
 
     // After fixed-sticky.js
     FixedSticky.tests.sticky = false;
