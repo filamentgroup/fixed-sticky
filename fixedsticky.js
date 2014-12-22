@@ -119,7 +119,6 @@
 
 			// if viewport or container is smaller than sticky element, don't do anything.
 			if ( elHeight >= ( viewportHeight || parentHeight ) ) {
-				console.log('x')
 				unFix();
 				toggle('initial');
 				return;
