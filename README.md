@@ -135,21 +135,20 @@ These tests were performed using fixed-sticky with the Filament group fixed-fixe
 ### A brief overview of the internals
 
 So that you don't have to go through the code to find out exactly how it works, here are some points that may help in your debugging.
-- The class `.fixedsticky doesn't control the polyfill initialisation (you use the more specific `$('#my-element').fixedsticky();`), but it is used in the polyfill CSS.
+- The class `.fixedsticky` doesn't control the polyfill initialisation (you use the more specific `$('#my-element').fixedsticky();`), but it is used in the polyfill CSS.
 - There are three modes (and three CSS classes) that a sticky element can be in:
     - **initial**: ie, the natural resting position of the element, eg for top-anchored element, it's the static/relative position at the top of it's container.
     - **sticky**: ie, where the element is now floating as the page scrolls, achieved with fixed positioning.
     - **opposite**: ie the page has scrolled to the point that the sticky element has hit the opposite end of it's container, and is locked to that end using absolute positioning.
-- On intialisation, a cloned block is added after the sticky element. It's purpose is to stop the content below the sticky element jumping up when it turns from static/relative positioning to fixed positioning. As such, it remains undisplayed until the sticky element becomes fixed (ie, sticky mode), and the clone block has `display:none` removed, but only takes up space as it also has `visibility:hidden`.
+- On intialisation, a cloned block is added to the DOM after the sticky element. It's purpose is to stop the content below the sticky element jumping up when it turns from static/relative positioning to fixed positioning. As such, it remains undisplayed until the sticky element becomes fixed (ie, sticky mode), and the clone block has `display:none` removed, but only takes up space as it also has `visibility:hidden`.
 - On intialisation, events are attached to the scroll and resize events called window.scroll.fixedsticky and window.resize.fixedsticky. If either of these are removed - even if they are then added back - the binding with exsiting sticky elements will break.
 - The config, dimensions, rest positions and state of each sticky element is held in the jQuery data() object on that element. This allows multiple instances to be added to a page.
 
-### Touch/Mobile devices
+### Performance on touch/mobile devices
 
-iOS 6.1+ supports `position:sticky` out of the box and has little to no performance cost and few perceivable performance downsides on any supported device. Currently, Chrome (v39) on Android does not support `regularylyposition:sticky`, but does evaluate the scroll event and paint the screen before `onTouchEnd`. It's screen paint rate isn't usually 
-as fast as desktop chrome - so sticky elements may lag/overshoot before they update to their correct position, but it could be considered acceptable depending on the device. Android webkit browsers are untested. Windows 8RTE browsers are untested.
+iOS 6.1+ supports `position:sticky` natively and has few perceivable performance downsides on any supported device. Currently, Chrome (v39) on Android does not support `position:sticky`, but does evaluate the scroll event and paint the screen before `onTouchEnd`. It's screen paint rate isn't usually as fast as desktop chrome - so sticky elements may lag/overshoot before they update to their correct position, but it's more often considered acceptable, depending on the device. Android webkit browsers are untested. Windows 8RTE browsers are untested.
 
-With smaller devices, you may want to not offer a sticky behaviour (eg, a floating sidebar on a phone may not be a sidebar at all). We're trying to evaluate whether a javascript, CSS or mixed solution would be preferred. A JS solution would stop events/DOM manipulation where it wasn't required, but a CSS solution would go to the root of the solution - the media query. For the moment, it's recommended that a media query such as the below is used:
+With smaller devices, you may not want to offer a sticky behaviour (eg, a floating sidebar on a phone may not be a sidebar at all). We're trying to evaluate whether a javascript, CSS or mixed solution would be best. A JS solution would stop events/DOM manipulation where it wasn't required, but a CSS solution would go to the root of the solution - the media query. For the moment, it's recommended that a CSS media query such as the below is used:
 
     @media screen AND (max-width:599px) {
         .fixed-sticky {
