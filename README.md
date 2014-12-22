@@ -90,7 +90,7 @@ This will remove the polyfill and all it's associated data and classes from the 
 
 If you wish to stick an element to the bottom of a container (eg, a promobox to the bottom of a sidebar), set the element CSS as having a `bottom: 0;` instead of the regular `top: 0;`. However, native implementations don't currently support this, so you may want to override the native behavior with this polyfill, as described below.
 
-* See [this demo for an example of sticking to the bottom of a container](demos/demo-2-stick-to-bottom.html).
+* See [this demo for an example of sticking to the bottom of a container](//pixelthing.github.io/fixed-sticky/demos/demo-2-stick-to-bottom.html).
 
 ### Using the polyfill instead of native
 
@@ -99,7 +99,7 @@ If you’re having weird issues with native `position: sticky`, you can tell fix
     // After fixed-sticky.js
     FixedSticky.tests.sticky = false;
 
-* See [this demo for an example of overriding native implementation](demos/demo-2-stick-to-bottom.html).
+* See [this demo for an example of overriding native implementation](//pixelthing.github.io/fixed-sticky/demos/demo-2-stick-to-bottom.html).
 
 ### Options
 
@@ -108,7 +108,7 @@ Apart from setting the element to stick to either the top or bottom (achieved by
     <div class="fixedsticky" data-fixedstickyprescrolltop="100">
 
 Note the value is always in pixels and an integer.
-* See [this demo for an example of adding a pre-scroll offset](demos/demo-2-pre-scroll.html).
+* See [this demo for an example of adding a pre-scroll offset](//pixelthing.github.io/fixed-sticky/demos/demo-2-pre-scroll.html).
     
 ## Browser Support
 
