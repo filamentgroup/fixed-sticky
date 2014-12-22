@@ -9,86 +9,147 @@ A CSS `position:sticky` polyfill.
 
 ## Explanation
 
-CSS position:sticky is really in its infancy in terms of browser support. In stock browsers, it is currently only available in iOS 6.
+CSS position:sticky has spotty support across browsers. Apple Safari supports it as the prefixed `position: -webkit-sticky;` from OSX/iOS Safari 6.1+, Firefox supports it un-prefixed in v32+. Chrome does not currently support it (although it was in pre-blink canary behind a flag, and may return in the future). For more on the current state of native support, visit [CanIUse](http://caniuse.com/#feat=css-sticky).
 
-In Chrome you can enable it by navigating to `chrome://flags` and enabling experimental “WebKit features” or “Web Platform features” (Canary).
+This is a polyfill to achieve the same effect in other browsers, eg, IE9+, Chrome and Android.
 
-In Firefox you you can go to `about:config` and set `layout.css.sticky.enabled` to "true".
+## Dependancies
 
-## Usage
+- jQuery 1.7+
+- Read the positioning caveats below.
 
-Just qualify element you’d like to be `position:sticky` with a `fixedsticky` class.
+## Basic usage
 
-    <div id="my-element" class="fixedsticky">
+Add jQuery and fixedsticky JS/CSS to the page, or install via bower:
 
-Add your own CSS to position the element. Supports any value for `top` or `bottom`.
+    bower install filament-sticky
+
+It's recommended that you add JS before the close of the body tag, unless you're fixing the sticky element to the bottom of the container and do not wish to see a jump on page load. CSS should be in the head, unless you have an async CSS strategy.
+
+    <!-- IN HEAD TAG -->
+    <link rel="stylesheet" href="/js/fixedsticky.css" type="text/css" media="all">
+    <!-- BEFORE CLOSING BODY TAG -->
+    <script src='https://code.jquery.com/jquery-1.11.2.min.js'></script>
+    <script src='/js/fixedsticky.js'></script>
+
+Qualify the element(s) you’d like to be `position:sticky` with a `fixedsticky` class.
+
+    <div class="fixedsticky">
+
+Add your own CSS to position the element.
 
     .fixedsticky { top: 0; }
 
-Next, add the events and initialize your sticky nodes:
+The container element must not have `overflow:hidden;` and must not be `position:static;`
 
-    $( '#my-element' ).fixedsticky();
+    .my-container { position: relative; overflow: visible; }
 
-*Note: if you’re going to use non-zero values for `top` or `bottom`, fixed-sticky is victim to a cross-browser incompatibility with jQuery’s `css` method (namely, IE8- doesn’t normalize non-pixel values to pixels). Use pixels (or `0`) for best cross-browser compatibility.*
+Next, initialize your sticky nodes:
+
+    $( '.fixedsticky' ).fixedsticky();
 
 ## Demos
-* For a fixed-sticky demo, open [`demo.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo.html).
-* For a pure native position: sticky test, open [`demo-control.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo-control.html).
+* [Basic "sticky address book header" scenario](//).
+* [Basic "sticky sidebar" scenario](//).
+* [Multiple instances on the same page](//).
+* [Overriding native support to achieve 'stick to bottom'](//).
+* [Using the fudge-factor to get around with an unrelated fixed header](//).
+* The original filament group demo (for reference): [`demo.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo.html).
+* The original filament group native position demo (for reference): [`demo-control.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo-control.html).
+* The original filament group native-override demo (for reference): [`demo-opt-out-native.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo-opt-out-native.html).
 
-## Native `position: sticky` Caveats
+## Caveats
 
+* Browsers that support sticky natively only support sticking to the top of a container, not the bottom (if you want to use this polyfill to overcome this, see below).
+* If you’re going to use non-zero values for `top` or `bottom`, fixed-sticky is victim to a cross-browser incompatibility with jQuery’s `css` method (namely, IE8- doesn’t normalize non-pixel values to pixels). Use pixels (or `0`) for best cross-browser compatibility.
 * `sticky` elements are constrained to the dimensions of their parents. This plugin behaves the same.
 * Any non-default value (not `visible`) for `overflow`, `overflow-x`, or `overflow-y` on the parent element will disable `position: sticky` (via [@davatron5000](https://twitter.com/davatron5000/status/434357818498351104)).
-* iOS (and Chrome) do not support `position: sticky;` with `display: inline-block;`.
-* This plugin (and Chrome’s implementation) does not (yet) support use with `thead` and `tfoot`.
+* iOS does not support `position: sticky;` with `display: inline-block;`.
+* This plugin does not (yet) support use with `thead` and `tfoot`.
 * Native `sticky` anchors to parent elements using their own overflow. This means scrolling the element fixes the sticky element to the parent dimensions. This plugin does not support overflow on parent elements.
+
+### Styling options for native vs polyfilled clients
+
+To enable you to offer different styling options for progressive enhancement, the polyfill adds appropriate classes to the root `html` element:
+* `fixedsticky-native` where native support is available.
+* `fixedsticky-polyfilled` where the polyfill has successfully initialised for at least one element.
+* both of the above where native support is available but has been optionally overidden by the polyfill (as outlined below)
+* neither of the above where native support is unavailable and the polyfill can not be (or has failed to be) initialised.
+
+### Sticking items to the bottom of a container
+
+If you wish to stick an element to the bottom of a container (eg, a promobox to the bottom of a sidebar), set the element CSS as having a `bottom: 0;` instead of the regular `top: 0;`. However, native implementations don't currently support this, so you may want to override the native behavior with this polyfill, as described below.
+
+* See [this demo for an example of sticking to the bottom of a container](//).
 
 ### Using the polyfill instead of native
 
-If you’re having weird issues with native `position: sticky`, you can tell fixed-sticky to use the polyfill instead of native. Just override the sticky feature test to always return false.
+If you’re having weird issues with native `position: sticky`, you can tell fixed-sticky to use the polyfill instead of native. Just override the sticky feature test to always return false. Make sure you do this before any calls to `$( '#my-element' ).fixedsticky();`.
 
     // After fixed-sticky.js
     FixedSticky.tests.sticky = false;
 
-* [`demo-opt-out-native.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo-opt-out-native.html) shows this behavior.
+* See [this demo for an example of overriding native implementation](//).
 
-## Installation
+### Options
 
-Use the provided `fixedsticky.js` and `fixedsticky.css` files.
+Apart from setting the element to stick to either the top or bottom (achieved by setting the CSS of `top:` or `bottom:` as described above), there is only one more optional setting, the *pre-scroll offset*. By default, the element starts to go into *"sticky mode"* when page scrolling means it's offset is crossing the top of the window or viewport. But sometimes you want the element to start becoming sticky before that point. For example, if you have a 100px high navigation bar fixed to the top of the window, you would want a sidebar to become sticky at least 100px before it crosses the top of the viewport. You can achieve this by adding a data attribute to the sticky element:
 
-### Also available in [Bower](http://bower.io/)
+    <div class="fixedsticky" data-fixedstickyprescrolltop="100">
 
-    bower install filament-sticky
+Note the value is always in pixels and an integer.
+* See [this demo for an example of adding a pre-scroll offset](//).
 
+### Accessing FixedSticky in javascript
+
+You can access the fixedsticky object - including config and methods. eg:
+
+    FixedSticky.init('#my-element')
+
+### Removing sticky positioning
+
+You can remove the fixedsticky polyfill behavior from any element using:
+
+    FixedSticky.destroy('#my-element')
+
+This will remove the polyfill and all it's associated data and classes from the element (but not the `.fixedsticky` class). Be aware that browsers that support sticky natively will still do so after the polyfill is removed, unless you take steps to stop it. If *the last instance* of a polyfilled element has been unitialised, the window scroll and resize events will also be removed and the `HTML` tag will have the `fixedsticky-polyfilled` CSS class removed.
+    
 ## Browser Support
 
-These tests were performed using fixed-sticky with fixed-fixed. It’s safest to use them together (`position:fixed` is a minefield on older devices), but they can be used independently.
+These tests were performed using fixed-sticky with the Filament group fixed-fixed polyfill. It’s safest to use them together (`position:fixed` is a minefield on older devices), but they can be used independently.
 
-### Native Sticky
+* ### Native Sticky
+    * OSX Safari 6.1+ (prefixed), iOS 6.1+ (prefixed), Firefox 32+ (un-prefixed)
+* ### Polyfilled
+    * Internet Explorer 7, 8, 9, 10
+    * Firefox 24, Firefox 17 ESR
+    * Chrome 29
+    * Safari 6.0.5
+    * Opera 12.16
+    * Android 4.X
+* ### Fallback (static positioning)
+    * Android 2.X
+    * Opera Mini
+    * Blackberry OS 5, 6, 7
+    * Windows Phone 7.5
 
-* iOS 6.1, iOS 7
+### A brief overview of the internals
 
-### Polyfilled
-
-* Internet Explorer 7, 8, 9, 10
-* Firefox 24, Firefox 17 ESR
-* Chrome 29
-* Safari 6.0.5
-* Opera 12.16
-* Android 4.X
-
-### Fallback (static positioning)
-
-* Android 2.X
-* Opera Mini
-* Blackberry OS 5, 6, 7
-* Windows Phone 7.5
+So that you don't have to go through the code to find out exactly how it works, here are some points that may help in your debugging.
+- The class '.fixedsticky' doesn't control the polyfill initialisation (you use the more specific `$( '#my-element' ).fixedsticky();`), but it is used in the polyfill CSS.
+- There are three modes (and three CSS classes) that a sticky element can be in:
+    - **initial**: ie, the natural resting position of the element, eg for top-anchored element, it's the static/relative position at the top of it's container.
+    - **sticky**: ie, where the element is now floating as the page scrolls, achieved with fixed positioning.
+    - **opposite**: ie the page has scrolled to the point that the sticky element has hit the opposite end of it's container, and is locked to that end using absolute positioning.
+- On intialisation, a cloned block is added after the sticky element. It's purpose is to stop the content below the sticky element jumping up when it turns from static/relative positioning to fixed positioning. As such, it remains undisplayed until the sticky element becomes fixed (ie, sticky mode), and the clone block has `display:none` removed, but only takes up space as it also has `visibility:hidden`.
+- On intialisation, an event is attached to the scroll and resize events called window.scroll.fixedsticky and window.resize.sticky. If either of these are removed - even if they are then added back - the binding with exsiting sticky elements will break.
+- The config, rest positions and state of each sticky element is held in the jQuery data() object on that element. This allows multiple instances to be added to a page.
 
 ## TODO
 
 * Add support for table headers.
 * Vanilla JS version.
-* Make sticky smoother on transition between sticky/static for container based
+* Decide on the best approach for responsive design, either JS config or overriding CSS rules.
 
 ## [Tests](http://filamentgroup.github.io/fixed-sticky/test/fixed-sticky.html)
 
@@ -96,5 +157,3 @@ These tests were performed using fixed-sticky with fixed-fixed. It’s safest to
 
 * `v0.1.0`: Initial release.
 * `v0.1.3`: Bug fixes, rudimentary tests, destroy method.
-* `v0.1.4`: Added CSS classes to let stylesheets determine no-support/native-support/polyfill-support
-* `v0.1.5`: More bulletproof full-range sticky behaviour
