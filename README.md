@@ -54,9 +54,6 @@ Next, initialize your sticky nodes:
 * [Multiple instances on the same page](//pixelthing.github.io/fixed-sticky/demos/demo-2-multiple-instances.html).
 * [Overriding native support to achieve 'stick to bottom'](//pixelthing.github.io/fixed-sticky/demos/demo-2-stick-to-bottom.html).
 * [Using the pre-scroll offset to get around with an unrelated fixed header](//pixelthing.github.io/fixed-sticky/demos/demo-2-pre-scroll.html).
-* The original filament group demo (for reference): [`demo.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo.html).
-* The original filament group native position demo (for reference): [`demo-control.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo-control.html).
-* The original filament group native-override demo (for reference): [`demo-opt-out-native.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo-opt-out-native.html).
 
 ## Caveats
 
