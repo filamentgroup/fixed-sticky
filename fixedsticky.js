@@ -27,6 +27,7 @@
 	var S = {
 		classes: {
 			plugin: 'fixedsticky',
+			init: 'fixedsticky-init',
 			active: 'fixedsticky-on',
 			inactive: 'fixedsticky-off',
 			opposite: 'fixedsticky-opposite',
@@ -198,13 +199,16 @@
 				return;
 			}
 
-			$( win ).unbind( '.fixedsticky' );
-
-			$( win.document.documentElement ).removeClass( S.classes.polyFillActive );
+			// check if we're about to remove the last sticky element in the document
+			if ( ( $( '.' + S.classes.init ).length - $el.length ) <= 0 ) {
+				$( win ).unbind( '.fixedsticky' );
+				$( win.document.documentElement ).removeClass( S.classes.polyFillActive );
+			}
 
 			return $el.each(function() {
 				$( this )
-					.removeData( [ S.keys.offset, S.keys.position ] )
+					.removeData( [ S.keys.offset, S.keys.position, S.keys.state, S.keys.elHeight, S.keys.viewportHeight, S.keys.parentOffset, S.keys.parentHeight, S.keys.fudgeTop ] )
+					.removeClass( S.classes.init )
 					.removeClass( S.classes.active )
 					.removeClass( S.classes.inactive )
 					.removeClass( S.classes.opposite )
@@ -232,7 +236,7 @@
 
 				S.firstCalc( _this );
 
-				$(_this).after( $( '<div>' ).addClass( S.classes.clone ).addClass( $(_this).attr("class").replace('fixedsticky', '') ).height( $(_this).data( S.keys.elHeight ) ) );
+				$(_this).after( $( '<div>' ).addClass( S.classes.clone ).addClass( $(_this).attr("class").replace('fixedsticky', '') ).height( $(_this).data( S.keys.elHeight ) ) ).addClass( S.classes.init );
 
 				S.update( _this );
 				
