@@ -69,8 +69,22 @@ Next, initialize your sticky nodes:
 
 To enable you to offer different styling options for progressive enhancement, the polyfill adds appropriate classes to the root `html` element:
 * `fixedsticky-native` where native support is available, and has not been optionally overridden by the polyfill.
-* `fixedsticky-polyfilled` where the polyfill has successfully initialised for at least one element.
+* `fixedsticky-polyfilled` where the polyfill has successfully initialised for at least one element, or has successfully overridden the native implentation.
 * neither of the above where native support is unavailable and the polyfill can not be (or has failed to be) initialised.
+
+### Accessing FixedSticky in javascript
+
+You can access the fixedsticky object - including config and methods. eg:
+
+    FixedSticky.init('#my-element')
+
+### Removing sticky positioning
+
+You can remove the fixedsticky polyfill behavior from any element using:
+
+    FixedSticky.destroy('#my-element')
+
+This will remove the polyfill and all it's associated data and classes from the element (but not the `.fixedsticky` class needed to re-initliase it/position it natively). Be aware that browsers that support sticky natively will still do so after the polyfill is removed, unless you take steps to stop it. If *the last instance* of a polyfilled element has been unitialised, the window scroll and resize events will also be removed and the `HTML` tag will have the `fixedsticky-polyfilled` CSS class removed.
 
 ### Sticking items to the bottom of a container
 
@@ -95,20 +109,6 @@ Apart from setting the element to stick to either the top or bottom (achieved by
 
 Note the value is always in pixels and an integer.
 * See [this demo for an example of adding a pre-scroll offset](demos/demo-2-pre-scroll.html).
-
-### Accessing FixedSticky in javascript
-
-You can access the fixedsticky object - including config and methods. eg:
-
-    FixedSticky.init('#my-element')
-
-### Removing sticky positioning
-
-You can remove the fixedsticky polyfill behavior from any element using:
-
-    FixedSticky.destroy('#my-element')
-
-This will remove the polyfill and all it's associated data and classes from the element (but not the `.fixedsticky` class). Be aware that browsers that support sticky natively will still do so after the polyfill is removed, unless you take steps to stop it. If *the last instance* of a polyfilled element has been unitialised, the window scroll and resize events will also be removed and the `HTML` tag will have the `fixedsticky-polyfilled` CSS class removed.
     
 ## Browser Support
 
