@@ -144,6 +144,19 @@ So that you don't have to go through the code to find out exactly how it works, 
 - On intialisation, events are attached to the scroll and resize events called window.scroll.fixedsticky and window.resize.fixedsticky. If either of these are removed - even if they are then added back - the binding with exsiting sticky elements will break.
 - The config, dimensions, rest positions and state of each sticky element is held in the jQuery data() object on that element. This allows multiple instances to be added to a page.
 
+### Touch/Mobile devices
+
+iOS 6.1+ supports `position:sticky` out of the box and has little to no performance cost and few perceivable performance downsides on any supported device. Currently, Chrome (v39) on Android does not support `regularylyposition:sticky`, but does evaluate the scroll event and paint the screen before `onTouchEnd`. It's screen paint rate isn't usually 
+as fast as desktop chrome - so sticky elements may lag/overshoot before they update to their correct position, but it could be considered acceptable depending on the device. Android webkit browsers are untested. Windows 8RTE browsers are untested.
+
+With smaller devices, you may want to not offer a sticky behaviour (eg, a floating sidebar on a phone may not be a sidebar at all). We're trying to evaluate whether a javascript, CSS or mixed solution would be preferred. A JS solution would stop events/DOM manipulation where it wasn't required, but a CSS solution would go to the root of the solution - the media query. For the moment, it's recommended that a media query such as the below is used:
+
+    @media screen AND (max-width:599px) {
+        .fixed-sticky {
+            position: static !important;
+        }
+    }
+
 ## TODO
 
 * Add support for table headers.
