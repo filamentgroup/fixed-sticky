@@ -115,13 +115,21 @@
 				viewportHeight 	=	$el.data( S.keys.viewportHeight ),
 				parentOffset 	=	$el.data( S.keys.parentOffset ),
 				parentHeight 	=	$el.data( S.keys.parentHeight ),
-				prescrollTop 		=	$el.data(S.keys.prescrollTop);
+				prescrollTop 	=	$el.data(S.keys.prescrollTop);
+
+			// if viewport or container is smaller than sticky element, don't do anything.
+			if ( elHeight >= ( viewportHeight || parentHeight ) ) {
+				console.log('x')
+				unFix();
+				toggle('initial');
+				return;
+			}
 
 			function toggle ( newState ) {
 				$el[ newState=='sticky' ? 'addClass' : 'removeClass' ]( S.classes.active )
 					[ newState=='initial' ? 'addClass' : 'removeClass' ]( S.classes.inactive )
-					[ newState=='opposite' ? 'addClass' : 'removeClass' ]( S.classes.opposite );
-				$el.data( S.keys.state, newState );
+					[ newState=='opposite' ? 'addClass' : 'removeClass' ]( S.classes.opposite )
+				.data( S.keys.state, newState );
 			};
 
 			function offTheTop() {
