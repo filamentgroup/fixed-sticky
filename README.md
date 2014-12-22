@@ -49,11 +49,11 @@ Next, initialize your sticky nodes:
     $( '.fixedsticky' ).fixedsticky();
 
 ## Demos
-* [Basic "sticky address book header" scenario](//).
-* [Basic "sticky sidebar" scenario](//).
-* [Multiple instances on the same page](//).
-* [Overriding native support to achieve 'stick to bottom'](//).
-* [Using the fudge-factor to get around with an unrelated fixed header](//).
+* [Basic "sticky address book header" scenario](demos/demo-2-address-book.html).
+* [Basic "sticky sidebar" scenario](demos/demo-2-sidebar.html).
+* [Multiple instances on the same page](demos/demo-2-multiple-insances.html).
+* [Overriding native support to achieve 'stick to bottom'](demos/demo-2-stick-to-bottom.html).
+* [Using the pre-scroll offset to get around with an unrelated fixed header](demos/demo-2-pre-scroll.html).
 * The original filament group demo (for reference): [`demo.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo.html).
 * The original filament group native position demo (for reference): [`demo-control.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo-control.html).
 * The original filament group native-override demo (for reference): [`demo-opt-out-native.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo-opt-out-native.html).
@@ -80,7 +80,7 @@ To enable you to offer different styling options for progressive enhancement, th
 
 If you wish to stick an element to the bottom of a container (eg, a promobox to the bottom of a sidebar), set the element CSS as having a `bottom: 0;` instead of the regular `top: 0;`. However, native implementations don't currently support this, so you may want to override the native behavior with this polyfill, as described below.
 
-* See [this demo for an example of sticking to the bottom of a container](//).
+* See [this demo for an example of sticking to the bottom of a container](demos/demo-2-stick-to-bottom.html).
 
 ### Using the polyfill instead of native
 
@@ -89,7 +89,7 @@ If you’re having weird issues with native `position: sticky`, you can tell fix
     // After fixed-sticky.js
     FixedSticky.tests.sticky = false;
 
-* See [this demo for an example of overriding native implementation](//).
+* See [this demo for an example of overriding native implementation](demos/demo-2-stick-to-bottom.html).
 
 ### Options
 
@@ -98,7 +98,7 @@ Apart from setting the element to stick to either the top or bottom (achieved by
     <div class="fixedsticky" data-fixedstickyprescrolltop="100">
 
 Note the value is always in pixels and an integer.
-* See [this demo for an example of adding a pre-scroll offset](//).
+* See [this demo for an example of adding a pre-scroll offset](demos/demo-2-pre-scroll.html).
 
 ### Accessing FixedSticky in javascript
 

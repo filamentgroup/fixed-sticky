@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Filament Group fixedsticky: Address book demo</title>
+  <meta name="viewport" content="width=850">
+  <link rel="stylesheet" href="../fixedsticky.css" type="text/css" media="all">
+  <style>
+
+  .address {
+    max-width: 750px;
+  }
+  .address-letter {
+    position: relative;
+  }
+  .address-letter-title {
+    top: 0;
+    width: 100%;
+    max-width: 750px;
+    /* note that the title has the same width as the table. It can't be a percentage (or auto), as when it becomes fixed position, it will relate to the viewport, not it's container. */
+  }
+
+  /* non-specific example CSS */
+  * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 10px;
+    background-color: #fff;
+    font-family: avenir,sans-serif;
+  }
+
+  h1, h2, h3 {
+    margin: 0;
+    padding: 0.2em 0;
+    font-size: 1.3em;
+    font-weight: 200;
+    text-transform: uppercase;
+  }
+
+  code {
+    color: #999;
+  }
+
+  .container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  header {
+    min-height: 250px;
+    margin: 0 0 10px;
+    padding: 100px 50px;
+    color: #fff;
+    background-color: #999;
+    text-align: center;
+  }
+  header a {
+    color: #fff;
+  }
+
+  section {
+    min-height: 800px;
+    margin: 0;
+    padding: 10px;
+    background-color: #eee;
+  }
+
+  footer {
+    min-height: 1000px;
+    margin: 10px 0 0;
+    padding: 10px;
+    color: #bdb9b5;
+    background-color: #999;
+  }
+
+  .address {
+    margin: 0 0 10px 10px;
+    background-color: #ddd;
+  }
+  .address-letter-title {
+    margin: 0;
+    padding: 0.2em 10px;
+    background-color: #ccc;
+    font-size: 2em;
+    font-weight: bold;
+  }
+  .address p {
+    margin: 0;
+    padding: 10px;
+  }
+  </style>
+  <link rel="stylesheet" href="../fixedsticky.css" type="text/css" media="all">
+
+</head>
+
+<body>
+
+<div class="container">
+  <header>
+    <h1>FIXED STICKY POLYFILL DEMO: Address book scenario</h1>
+    <p>
+      <a href="https://github.com/filamentgroup/fixed-sticky">Back to github</a>
+    </p>
+  </header>
+</div>
+
+<div class="container container__dashed">
+  <section>
+
+    <p>In this example, the headings in a stack of DIVs stick to the top of the screen as you scroll the page, only to disappear as you reach the next section.</p>
+
+    <div class="address">
+      <div class="address-letter">
+        <h3 class="address-letter-title fixedsticky">A</h3>
+        <p class="address-letter-text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce erat metus, tincidunt eu ultrices sit amet, cursus quis ipsum. Aliquam maximus vulputate neque quis semper. Quisque placerat nec sapien et malesuada. Quisque vel justo nec arcu maximus imperdiet at nec augue. Donec luctus iaculis finibus. Vivamus eu augue id massa pellentesque consequat vel ut ante. Curabitur venenatis, arcu at pharetra feugiat, diam leo imperdiet turpis, vel convallis ipsum erat sed lorem. Nullam rutrum neque eros, a dignissim purus dapibus a. Nunc feugiat, nulla sit amet suscipit tempus, tortor leo tempus nisl, quis fringilla ex est ut nibh. Etiam egestas neque sit amet lectus vulputate consequat. Donec tincidunt ante vitae eros sodales pharetra. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras vel ipsum eget lectus vehicula sodales non ut sem. Curabitur iaculis mollis est, sit amet eleifend ante faucibus eget. Maecenas non odio orci.
+      </div>
+      <div class="address-letter">
+        <h3 class="address-letter-title fixedsticky">B</h3>
+        <p class="address-letter-text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce erat metus, tincidunt eu ultrices sit amet, cursus quis ipsum. Aliquam maximus vulputate neque quis semper. Quisque placerat nec sapien et malesuada. Quisque vel justo nec arcu maximus imperdiet at nec augue. Donec luctus iaculis finibus. Vivamus eu augue id massa pellentesque consequat vel ut ante. Curabitur venenatis, arcu at pharetra feugiat, diam leo imperdiet turpis, vel convallis ipsum erat sed lorem. Nullam rutrum neque eros, a dignissim purus dapibus a. Nunc feugiat, nulla sit amet suscipit tempus, tortor leo tempus nisl, quis fringilla ex est ut nibh. Etiam egestas neque sit amet lectus vulputate consequat. Donec tincidunt ante vitae eros sodales pharetra. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras vel ipsum eget lectus vehicula sodales non ut sem. Curabitur iaculis mollis est, sit amet eleifend ante faucibus eget. Maecenas non odio orci.
+      </div>
+      <div class="address-letter">
+        <h3 class="address-letter-title fixedsticky">C</h3>
+        <p class="address-letter-text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce erat metus, tincidunt eu ultrices sit amet, cursus quis ipsum. Aliquam maximus vulputate neque quis semper. Quisque placerat nec sapien et malesuada. Quisque vel justo nec arcu maximus imperdiet at nec augue. Donec luctus iaculis finibus. Vivamus eu augue id massa pellentesque consequat vel ut ante. Curabitur venenatis, arcu at pharetra feugiat, diam leo imperdiet turpis, vel convallis ipsum erat sed lorem. Nullam rutrum neque eros, a dignissim purus dapibus a. Nunc feugiat, nulla sit amet suscipit tempus, tortor leo tempus nisl, quis fringilla ex est ut nibh. Etiam egestas neque sit amet lectus vulputate consequat. Donec tincidunt ante vitae eros sodales pharetra. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras vel ipsum eget lectus vehicula sodales non ut sem. Curabitur iaculis mollis est, sit amet eleifend ante faucibus eget. Maecenas non odio orci.
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<div class="container">
+  <footer>
+  </footer>
+</div>
+
+  <script src='https://code.jquery.com/jquery-1.11.2.min.js'></script>
+  <script src='../fixedsticky.js'></script>
+  <script>
+
+    /* activate the fixedsticky polyfill */
+    $('.fixedsticky').fixedsticky();
+
+  </script>
+
+</body>
+</html>
