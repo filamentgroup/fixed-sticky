@@ -49,11 +49,11 @@ Next, initialize your sticky nodes:
     $( '.fixedsticky' ).fixedsticky();
 
 ## Demos
-* [Basic "sticky address book header" scenario](demos/demo-2-address-book.html).
-* [Basic "sticky sidebar" scenario](demos/demo-2-sidebar.html).
-* [Multiple instances on the same page](demos/demo-2-multiple-insances.html).
-* [Overriding native support to achieve 'stick to bottom'](demos/demo-2-stick-to-bottom.html).
-* [Using the pre-scroll offset to get around with an unrelated fixed header](demos/demo-2-pre-scroll.html).
+* [Basic "sticky address book header" scenario](//pixelthing.github.io/fixed-sticky/demos/demo-2-address-book.html).
+* [Basic "sticky sidebar" scenario](//pixelthing.github.io/fixed-sticky/demos/demo-2-sidebar.html).
+* [Multiple instances on the same page](//pixelthing.github.io/fixed-sticky/demos/demo-2-multiple-instances.html).
+* [Overriding native support to achieve 'stick to bottom'](//pixelthing.github.io/fixed-sticky/demos/demo-2-stick-to-bottom.html).
+* [Using the pre-scroll offset to get around with an unrelated fixed header](//pixelthing.github.io/fixed-sticky/demos/demo-2-pre-scroll.html).
 * The original filament group demo (for reference): [`demo.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo.html).
 * The original filament group native position demo (for reference): [`demo-control.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo-control.html).
 * The original filament group native-override demo (for reference): [`demo-opt-out-native.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo-opt-out-native.html).
@@ -71,9 +71,8 @@ Next, initialize your sticky nodes:
 ### Styling options for native vs polyfilled clients
 
 To enable you to offer different styling options for progressive enhancement, the polyfill adds appropriate classes to the root `html` element:
-* `fixedsticky-native` where native support is available.
+* `fixedsticky-native` where native support is available, and has not been optionally overridden by the polyfill.
 * `fixedsticky-polyfilled` where the polyfill has successfully initialised for at least one element.
-* both of the above where native support is available but has been optionally overidden by the polyfill (as outlined below)
 * neither of the above where native support is unavailable and the polyfill can not be (or has failed to be) initialised.
 
 ### Sticking items to the bottom of a container
