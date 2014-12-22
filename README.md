@@ -118,16 +118,16 @@ This will remove the polyfill and all it's associated data and classes from the 
 
 These tests were performed using fixed-sticky with the Filament group fixed-fixed polyfill. It’s safest to use them together (`position:fixed` is a minefield on older devices), but they can be used independently.
 
-* ### Native Sticky
+* **Native Sticky**
     * OSX Safari 6.1+ (prefixed), iOS 6.1+ (prefixed), Firefox 32+ (un-prefixed)
-* ### Polyfilled
+* **Polyfilled**
     * Internet Explorer 7, 8, 9, 10
     * Firefox 24, Firefox 17 ESR
     * Chrome 29
     * Safari 6.0.5
     * Opera 12.16
     * Android 4.X
-* ### Fallback (static positioning)
+* **Fallback (static positioning)**
     * Android 2.X
     * Opera Mini
     * Blackberry OS 5, 6, 7
@@ -136,14 +136,14 @@ These tests were performed using fixed-sticky with the Filament group fixed-fixe
 ### A brief overview of the internals
 
 So that you don't have to go through the code to find out exactly how it works, here are some points that may help in your debugging.
-- The class '.fixedsticky' doesn't control the polyfill initialisation (you use the more specific `$( '#my-element' ).fixedsticky();`), but it is used in the polyfill CSS.
+- The class `.fixedsticky doesn't control the polyfill initialisation (you use the more specific `$('#my-element').fixedsticky();`), but it is used in the polyfill CSS.
 - There are three modes (and three CSS classes) that a sticky element can be in:
     - **initial**: ie, the natural resting position of the element, eg for top-anchored element, it's the static/relative position at the top of it's container.
     - **sticky**: ie, where the element is now floating as the page scrolls, achieved with fixed positioning.
     - **opposite**: ie the page has scrolled to the point that the sticky element has hit the opposite end of it's container, and is locked to that end using absolute positioning.
 - On intialisation, a cloned block is added after the sticky element. It's purpose is to stop the content below the sticky element jumping up when it turns from static/relative positioning to fixed positioning. As such, it remains undisplayed until the sticky element becomes fixed (ie, sticky mode), and the clone block has `display:none` removed, but only takes up space as it also has `visibility:hidden`.
-- On intialisation, an event is attached to the scroll and resize events called window.scroll.fixedsticky and window.resize.sticky. If either of these are removed - even if they are then added back - the binding with exsiting sticky elements will break.
-- The config, rest positions and state of each sticky element is held in the jQuery data() object on that element. This allows multiple instances to be added to a page.
+- On intialisation, events are attached to the scroll and resize events called window.scroll.fixedsticky and window.resize.fixedsticky. If either of these are removed - even if they are then added back - the binding with exsiting sticky elements will break.
+- The config, dimensions, rest positions and state of each sticky element is held in the jQuery data() object on that element. This allows multiple instances to be added to a page.
 
 ## TODO
 
