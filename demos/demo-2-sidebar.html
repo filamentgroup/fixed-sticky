@@ -16,6 +16,12 @@
     /* note that no left or right are specified. Once this item goes changes fixed, that will be relative to the viewport, not the container. But if its not specified, it's zero relative to the container. */
   }
 
+  .fixedsticky-native .example-stick {
+    position: -webkit-sticky;
+    position: sticky;
+    /* uses cascades to hand back to native implementations */
+  }
+
   /* non-specific example CSS */
   * {
     -webkit-box-sizing: border-box;
@@ -83,7 +89,6 @@
   }
 
   </style>
-  <link rel="stylesheet" href="../fixedsticky.css" type="text/css" media="all">
 
 </head>
 

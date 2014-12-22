@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>Filament Group fixedsticky: Using pre-scroll to adjust the scroll point</title>
   <meta name="viewport" content="width=850">
+  <link rel="stylesheet" href="../fixedsticky.css" type="text/css" media="all">
   <style>
 
   /* CSS for this example */
@@ -15,6 +16,14 @@
 
     /* note that no left or right are specified. Once this item goes changes fixed, that will be relative to the viewport, not the container. But if its not specified, it's zero relative to the container. */
   }
+
+  .fixedsticky-native .example-stick {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 50px;
+    /* uses cascades to hand back to native implementations */
+  }
+
   .example-stick.fixedsticky-on,
   .example-stick.fixedsticky-opposite {
     margin-top: 50px;
@@ -59,7 +68,7 @@
     z-index: 1;
     height: 50px;
     color: #fff;
-    background-color: rgba(100,100,100,0.7);
+    background-color: rgba(0,0,0,0.7);
     line-height: 50px;
     text-align: center;
   }
@@ -100,7 +109,6 @@
   }
 
   </style>
-  <link rel="stylesheet" href="../fixedsticky.css" type="text/css" media="all">
 
 </head>
 
@@ -119,7 +127,7 @@
   </header>
 </div>
 
-<div class="container">
+<div class="container container-stick">
   <aside class="example-stick example-stick__top fixedsticky" data-fixedstickyprescrolltop="-50">
     <h2 class="example-title">Sticky sidebar</h2>
   </aside>

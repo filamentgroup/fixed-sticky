@@ -5,24 +5,24 @@
   <meta charset="UTF-8">
   <title>Filament Group fixedsticky: Multiple instances demo</title>
   <meta name="viewport" content="width=850">
+  <link rel="stylesheet" href="../fixedsticky.css" type="text/css" media="all">
   <style>
 
   /* CSS for this example */
   .example-stick {
     position: relative;
     float: left;
+    top: 10px;
     margin-left: 10px;
     margin-bottom: 10px;
     /* note that no left or right are specified. Once this item goes changes fixed, that will be relative to the viewport, not the container. But if its not specified, it's zero relative to the container. */
   }
-  .example-stick__top {
-    position: relative;
-    top: 10px;
-  }
-  .example-stick__bottom {
-    position: absolute;
-    bottom: 0;
+
+  .fixedsticky-native .example-stick {
+    position: -webkit-sticky;
+    position: sticky;
     margin-top: 10px;
+    /* not this allows a tweak of the native implementation to match the polyfilled version */
   }
 
   .address {
@@ -36,11 +36,6 @@
     width: 100%;
     max-width: 520px;
     /* note that the title has the same width as the table. It can't be a percentage (or auto), as when it becomes fixed position, it will relate to the viewport, not it's container. */
-  }
-
-  .fixedsticky-native .example-stick__top {
-    margin-top: 10px;
-    /* not this allows a tweak of the native implementation to match the polyfilled version */
   }
 
   /* non-specific example CSS */
@@ -128,7 +123,6 @@
     padding: 10px;
   }
   </style>
-  <link rel="stylesheet" href="../fixedsticky.css" type="text/css" media="all">
 
 </head>
 
@@ -144,7 +138,7 @@
 </div>
 
 <div class="container container__dashed">
-  <aside class="example-stick example-stick__top fixedsticky">
+  <aside class="example-stick fixedsticky">
     <h2 class="example-title">Sticky sidebar</h2>
   </aside>
   <section>
