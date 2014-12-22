@@ -44,7 +44,7 @@
 			viewportHeight: 'fixedStickyViewportHeight',
 			parentOffset: 'fixedStickyParentOffset',
 			parentHeight: 'fixedStickyParentHeight',
-			fudgeTop: 'fixedstickyfudgetop'
+			prescrollTop: 'fixedstickyprescrolltop'
 		},
 		tests: {
 			sticky: featureTest( 'position', 'sticky' ),
@@ -76,8 +76,8 @@
 			}
 			$el.data( S.keys.offset, offset );
 
-            if (!$el.data(S.keys.fudgeTop)) {
-                $el.data(S.keys.fudgeTop, 0);
+            if (!$el.data(S.keys.prescrollTop)) {
+                $el.data(S.keys.prescrollTop, 0);
             }
 
 			S.reCalc( el );
@@ -115,7 +115,7 @@
 				viewportHeight 	=	$el.data( S.keys.viewportHeight ),
 				parentOffset 	=	$el.data( S.keys.parentOffset ),
 				parentHeight 	=	$el.data( S.keys.parentHeight ),
-				fudgeTop 		=	$el.data(S.keys.fudgeTop);
+				prescrollTop 		=	$el.data(S.keys.prescrollTop);
 
 			function toggle ( newState ) {
 				$el[ newState=='sticky' ? 'addClass' : 'removeClass' ]( S.classes.active )
@@ -129,7 +129,7 @@
 					//return scroll + viewportHeight + offset < parentOffset + ( elHeight || 0 );
 					return scroll + viewportHeight  < parentOffset + elHeight + offset;
 				} else {
-					var offsetTop = scroll + offset - fudgeTop;
+					var offsetTop = scroll + offset - prescrollTop;
 					// Initial Offset Top
 					return offset + parentOffset >= offsetTop;
 				}
@@ -207,7 +207,7 @@
 
 			return $el.each(function() {
 				$( this )
-					.removeData( [ S.keys.offset, S.keys.position, S.keys.state, S.keys.elHeight, S.keys.viewportHeight, S.keys.parentOffset, S.keys.parentHeight, S.keys.fudgeTop ] )
+					.removeData( [ S.keys.offset, S.keys.position, S.keys.state, S.keys.elHeight, S.keys.viewportHeight, S.keys.parentOffset, S.keys.parentHeight, S.keys.prescrollTop ] )
 					.removeClass( S.classes.init )
 					.removeClass( S.classes.active )
 					.removeClass( S.classes.inactive )
