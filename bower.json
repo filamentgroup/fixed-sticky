@@ -8,6 +8,5 @@
   "dependencies": {
     "jquery": ">=1.9.1",
     "filament-fixed": ">=0.1.1",
-    "qunit": ">=1.12.0"
   }
 }
