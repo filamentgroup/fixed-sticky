@@ -22,25 +22,22 @@ The most overlooked thing about `position: sticky` is that `sticky` elements are
 Here’s an example of what a `sticky` element with CSS `top: 20px` behaves like:
 
 ![](demos/gifs/sticky-top-off.gif)
-*Scrolling down*
 
-The blue border represents the dimensions of the parent container element. If the element’s top is greater than `20px` to the top of the viewport, the element is not sticky.
+*Scrolling down.* The blue border represents the dimensions of the parent container element. If the element’s top is greater than `20px` to the top of the viewport, the element is not sticky.
 
 ![](demos/gifs/sticky-top-on.gif)
-*Scrolling down*
 
-When the element’s top is less than `20px` to the top of the viewport, the element is sticky.
+*Scrolling down.* When the element’s top is less than `20px` to the top of the viewport, the element is sticky.
 
 Here’s an example of what a `sticky` element with CSS `bottom: 20px` behaves like:
 
 ![](demos/gifs/sticky-bottom-off.gif)
-*Scrolling up*
 
-Not sticky.
+*Scrolling up.* Not sticky.
 
 ![](demos/gifs/sticky-bottom-on.gif)
 
-Sticky.
+*Scrolling up.* Sticky.
 
 ## Plugin Usage
 
