@@ -23,7 +23,7 @@ Here’s an example of what a `sticky` element with CSS `top: 20px` behaves like
 
 ![](demos/gifs/sticky-top-off.gif)
 
-If the element’s top is greater than `20px` to the top of the viewport, the element is not sticky.
+The blue border represents the dimensions of the parent container element. If the element’s top is greater than `20px` to the top of the viewport, the element is not sticky.
 
 ![](demos/gifs/sticky-top-on.gif)
 
