@@ -25,7 +25,7 @@ Here’s an example of what a `sticky` element with CSS `top: 20px` behaves like
 
 If the element’s top is greater than `20px` to the top of the viewport, the element is not sticky.
 
-![](demos/gifs/sticky-top-off.gif)
+![](demos/gifs/sticky-top-on.gif)
 
 When the element’s top is less than `20px` to the top of the viewport, the element is sticky.
 
