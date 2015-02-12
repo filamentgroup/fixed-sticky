@@ -7,7 +7,7 @@ A CSS `position:sticky` polyfill.
 - ©2013 [@zachleat](https://github.com/zachleat), Filament Group
 - MIT license
 
-## Explanation
+## Browser Support
 
 CSS position:sticky is really in its infancy in terms of browser support. In stock browsers, it is currently only available in iOS 6.
 
@@ -15,7 +15,31 @@ CSS position:sticky is really in its infancy in terms of browser support. In sto
 
 In Firefox you you can go to `about:config` and set `layout.css.sticky.enabled` to "true".
 
-## Usage
+## Important
+
+The most overlooked thing about `position: sticky` is that `sticky` elements are constrained to the dimensions of their parent elements. This means if a `sticky` element is inside of a parent container that is the same dimensions as itself, the element will not stick.
+
+Here’s an example of what a `sticky` element with CSS `top: 20px` behaves like:
+
+![](demos/gifs/sticky-top-off.gif)
+
+*Scrolling down.* The blue border represents the dimensions of the parent container element. If the element’s top is greater than `20px` to the top of the viewport, the element is not sticky.
+
+![](demos/gifs/sticky-top-on.gif)
+
+*Scrolling down.* When the element’s top is less than `20px` to the top of the viewport, the element is sticky.
+
+Here’s an example of what a `sticky` element with CSS `bottom: 20px` behaves like:
+
+![](demos/gifs/sticky-bottom-off.gif)
+
+*Scrolling up.* Not sticky.
+
+![](demos/gifs/sticky-bottom-on.gif)
+
+*Scrolling up.* Sticky.
+
+## Plugin Usage
 
 Just qualify element you’d like to be `position:sticky` with a `fixedsticky` class.
 
@@ -37,7 +61,6 @@ Next, add the events and initialize your sticky nodes:
 
 ## Native `position: sticky` Caveats
 
-* `sticky` elements are constrained to the dimensions of their parents. This plugin behaves the same.
 * Any non-default value (not `visible`) for `overflow`, `overflow-x`, or `overflow-y` on the parent element will disable `position: sticky` (via [@davatron5000](https://twitter.com/davatron5000/status/434357818498351104)).
 * iOS ~~(and Chrome)~~ do not support `position: sticky;` with `display: inline-block;`.
 * This plugin ~~(and Chrome’s implementation)~~ does not (yet) support use with `thead` and `tfoot`.
