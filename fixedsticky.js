@@ -26,6 +26,7 @@
 			active: 'fixedsticky-on',
 			inactive: 'fixedsticky-off',
 			clone: 'fixedsticky-dummy',
+			delegate: 'fixedsticky-delegate',
 			withoutFixedFixed: 'fixedsticky-withoutfixedfixed'
 		},
 		keys: {
@@ -68,7 +69,7 @@
 				skipSettingToFixed,
 				elTop,
 				elBottom,
-				$parent = $el.parent(),
+				$parent = $el.is( '.' + S.classes.delegate ) ? $el.parent().parent() : $el.parent(),
 				parentOffset = $parent.offset().top,
 				parentHeight = $parent.outerHeight();
 
