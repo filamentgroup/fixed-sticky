@@ -116,7 +116,7 @@
 			}
 
 			elTop = getPx( $el.css( 'top' ) );
-			elBottom = getPx( $el.css( 'bottom' ) );
+			elBottom = elTop == 0 && getPx( $el.css( 'height' ) ) == 0 ? 0 : getPx( $el.css( 'bottom' ) );
 
 			if( position.top && isFixedToTop() || position.bottom && isFixedToBottom() ) {
 				if( !isAlreadyOn ) {
