@@ -26,6 +26,7 @@
 			active: 'fixedsticky-on',
 			inactive: 'fixedsticky-off',
 			clone: 'fixedsticky-dummy',
+			delegate: 'fixedsticky-delegate',
 			withoutFixedFixed: 'fixedsticky-withoutfixedfixed'
 		},
 		keys: {
@@ -68,7 +69,7 @@
 				skipSettingToFixed,
 				elTop,
 				elBottom,
-				$parent = $el.parent(),
+				$parent = $el.is( '.' + S.classes.delegate ) ? $el.parent().parent() : $el.parent(),
 				parentOffset = $parent.offset().top,
 				parentHeight = $parent.outerHeight();
 
@@ -115,7 +116,7 @@
 			}
 
 			elTop = getPx( $el.css( 'top' ) );
-			elBottom = getPx( $el.css( 'bottom' ) );
+			elBottom = elTop == 0 && getPx( $el.css( 'height' ) ) == 0 ? 0 : getPx( $el.css( 'bottom' ) );
 
 			if( position.top && isFixedToTop() || position.bottom && isFixedToBottom() ) {
 				if( !isAlreadyOn ) {
