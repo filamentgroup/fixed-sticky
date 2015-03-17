@@ -55,6 +55,10 @@ Next, add the events and initialize your sticky nodes:
 
 *Note: if you’re going to use non-zero values for `top` or `bottom`, fixed-sticky is victim to a cross-browser incompatibility with jQuery’s `css` method (namely, IE8- doesn’t normalize non-pixel values to pixels). Use pixels (or `0`) for best cross-browser compatibility.*
 
+Optionally, you may also destroy the component:
+
+    $( '#my-element' ).fixedsticky( 'destroy' );
+
 ## Demos
 * For a fixed-sticky demo, open [`demo.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo.html).
 * For a pure native position: sticky test, open [`demo-control.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo-control.html).
@@ -89,7 +93,7 @@ These tests were performed using fixed-sticky with fixed-fixed. It’s safest to
 
 ### Native Sticky
 
-* iOS 6.1, iOS 7
+* iOS 6.1+
 
 ### Polyfilled
 
