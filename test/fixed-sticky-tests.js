@@ -1,4 +1,4 @@
-/* global QUnit:false, module:false, test:false, asyncTest:false, expect:false, start:false, stop:false, ok:false, equal:false, notEqual:false, deepEqual:false, notDeepEqual:false, strictEqual:false, notStrictEqual:false, raises:false, SocialCount:true */
+/* global QUnit:false, module:false, test:false, asyncTest:false, expect:false, start:false, stop:false, ok:false, equal:false, notEqual:false, deepEqual:false, notDeepEqual:false, strictEqual:false, notStrictEqual:false, raises:false */
 (function($) {
 
 	/*
@@ -99,6 +99,7 @@
 		equal( $sticky.css( 'position' ), 'static' );
 	});
 
+
 	test( 'Cleanup', function() {
 		$( '#qunit-fixture' ).html( '<div id="sticky" class="fixedsticky">Sticky</div>' );
 
@@ -109,6 +110,27 @@
 
 		$sticky.fixedsticky( 'destroy' );
 		ok( !$sticky.siblings( '.' + FixedSticky.classes.clone ).length );
+	});
+
+	test( 'Destroying one fixedsticky should not cleanup others', function() {
+		$( '#qunit-fixture' ).html(
+				['<style>#sticky { top: 0; } #sticky2 { top: 0; }</style>',
+				'<div id="sticky" class="fixedsticky">Sticky</div>',
+				'<div id="sticky2" class="fixedsticky">Sticky</div>',
+				'<div style="height: 2000px">Test</div>'].join( '' ) );
+
+		var $sticky = $( '#sticky' );
+		$sticky.fixedsticky();
+
+		var $sticky2 = $( '#sticky2' );
+		$sticky2.fixedsticky();
+
+		$sticky.fixedsticky( 'destroy' );
+
+		ok( $sticky2.hasClass( 'fixedsticky' ) );
+		$(window).scrollTop( 1000 ).trigger( 'scroll' );
+		equal( $sticky2.css( 'position' ), 'fixed' );
+		equal( $sticky2.offset().top, 1000 );
 	});
 
 }( jQuery ));

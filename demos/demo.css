@@ -1,24 +1,27 @@
+/* Logo */
+.header {
+	background: #247201 url(http://filamentgroup.com/images/headerbg-new.jpg) no-repeat bottom left;
+}
+#fg-logo {
+	text-indent: -9999px;
+	margin: 0 auto;
+	width: 287px;
+	height: 52px;
+	background-image: url(http://filamentgroup.com/images/fg-logo-icon.png);
+}
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5){
+	#fg-logo {
+		background-size: 287px 52px;
+		background-image: url(http://filamentgroup.com/images/fg-logo-icon-lrg.png);
+	}
+}
 /* Demo CSS */
 body {
-	margin: 0;
 	font-family: sans-serif;
 	color: #444;
-}
-
-.demo-main {
 	margin: 0 auto;
+	padding: 0 2%;
 	max-width: 600px;
-}
-
-.demo-main p {
-	padding: 0 15px;
-}
-.demo-main h1,
-.demo-main h2,
-.demo-main h3,
-.demo-main h4,
-.demo-main h5 {
-	margin-left: 15px;
 }
 
 .top,
@@ -32,6 +35,10 @@ body {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
+}
+.top.fixedsticky-on,
+.bottom.fixedsticky-on {
+	width: 96%;
 }
 
 /* Fixed-Sticky CSS */
@@ -61,8 +68,4 @@ body {
 }
 .container {
 	background-color: #999;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> master

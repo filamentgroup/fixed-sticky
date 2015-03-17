@@ -23,7 +23,6 @@
 			if( !el.getBoundingClientRect || el.getBoundingClientRect().top !== 0 ){
 				// Fixed is not working or can't be tested
 				docEl.className = docEl.className.replace( htmlclass, "" );
-				alert( 'removing that shit' );
 			}
 
 			// remove the test element

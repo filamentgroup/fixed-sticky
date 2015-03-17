@@ -18,6 +18,8 @@
 		return parseInt( unit, 10 ) || 0;
 	}
 
+	var uniqueIdCounter = 0;
+
 	var S = {
 		classes: {
 			plugin: 'fixedsticky',
@@ -28,7 +30,8 @@
 		},
 		keys: {
 			offset: 'fixedStickyOffset',
-			position: 'fixedStickyPosition'
+			position: 'fixedStickyPosition',
+			id: 'fixedStickyId'
 		},
 		tests: {
 			sticky: featureTest( 'position', 'sticky' ),
@@ -127,14 +130,16 @@
 		destroy: function( el ) {
 			var $el = $( el );
 			if (S.bypass()) {
-				return;
+				return $el;
 			}
 
-			$( win ).unbind( '.fixedsticky' );
-
 			return $el.each(function() {
-				$( this )
-					.removeData( [ S.keys.offset, S.keys.position ] )
+				var $this = $( this );
+				var id = $this.data( S.keys.id );
+				$( win ).unbind( '.fixedsticky' + id );
+
+				$this
+					.removeData( [ S.keys.offset, S.keys.position, S.keys.id ] )
 					.removeClass( S.classes.active )
 					.removeClass( S.classes.inactive )
 					.next( '.' + S.classes.clone ).remove();
@@ -144,18 +149,19 @@
 			var $el = $( el );
 
 			if( S.bypass() ) {
-				return;
+				return $el;
 			}
 
 			return $el.each(function() {
 				var _this = this;
-				$( win ).bind( 'scroll.fixedsticky', function() {
+				var id = uniqueIdCounter++;
+				$( this ).data( S.keys.id, id );
+
+				$( win ).bind( 'scroll.fixedsticky' + id, function() {
 					S.update( _this );
-				});
+				}).trigger( 'scroll.fixedsticky' + id );
 
-				S.update( this );
-
-				$( win ).bind( 'resize.fixedsticky', function() {
+				$( win ).bind( 'resize.fixedsticky' + id , function() {
 					if( $el.is( '.' + S.classes.active ) ) {
 						S.update( _this );
 					}
@@ -182,4 +188,4 @@
 		$( win.document.documentElement ).addClass( S.classes.withoutFixedFixed );
 	}
 
-})( this, jQuery );
+})( window, jQuery );

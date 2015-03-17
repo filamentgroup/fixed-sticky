@@ -1,3 +1,74 @@
+1.16.0 / 2014-12-03
+==================
+
+  * Assert: Add alias for throws called 'raises'
+  * Async: Fail assertions after existing assert.async flows are resolved
+  * Async: Implement assert.async
+  * Async: Tests are now Promise-aware
+  * Callbacks: Restore and warn if some logging callback gets modified
+  * Callbacks: Throws an error on non-function params for logging methods
+  * Core: change url() helper to output `?foo` instead of `?foo=true`
+  * Core: Detail modules and tests names in the logging callbacks
+  * Core: Implements QUnit.skip
+  * Core: Remove constructor
+  * Core: Rename config.module to config.moduleFilter
+  * Core: Use `Error#stack` without throwing when available
+  * Dump: Configurable limit for object depth
+  * HTML Reporter: Enable activating config.hidepassed from URL params
+  * HTML Reporter: Move QUnit.reset back to core to run it before testDone
+  * HTML Reporter: Output runtime of each assertion in results
+  * Logging: Add runtime to moduleDone
+  * Logging: Defer begin event till tests actually starts
+  * Test: Introduce order independent testId to replace testNumber
+  * Test: Rename module's setup/teardown to beforeEach/afterEach
+
+1.15.0 / 2014-08-08
+==================
+
+* Assert: Implement Assert constructor with test context. This heavily improves debugging of async tests, since assertions can't leak into other tests anymore. Use the assert argument in your test callbacks to run assertions to get the full benefit of this.
+* Assert: Improved the default message from assert.ok. Now assert.ok() outputs the exact value it received, instead of only saying it wasn't thruthy.
+* Assert: Removal of raises, same and equals. These were deprecated a long time ago and finally removed. Use throws, deepEqual and equal instead.
+* Core: Pass total amount of tests to QUnit.begin callback as totalTests. Will be used by Karma and other reporters.
+* Dump: Move QUnit.jsDump to QUnit.dump. QUnit.jsDump still exists, but will be removed later. Use QUnit.dump.
+* Dump: Output non-enumerable properties of TypeError. Makes it easier to compare properties of error objects.
+* Reporter: Output only assertion count for green tests. Less visual clutter for passing tests.
+* Reporter: Move HTML reporter to a new JS file. The HTML reporter is still bundled, but the code has been refactored to move it to a separate file.
+* Test: Remove deprecated QUnit.current_testEnvironment
+* Throws: support for oldIE native Error types. Error objects in IE are buggy, this works around those issues.
+
+1.14.0 / 2014-01-31
+==================
+
+  * Grunt: Run tests on ios browserSet as well
+  * Package: Set main property to qunit/qunit.js
+  * Grunt: Inline browserSet config for TestSwarm runs
+  * CSS: Removing redundancy
+  * Core: Add config property for disabling default scroll-to-top
+  * Grunt: Remove addons leftovers
+  * Addons: Remove last remnants
+  * Core: Extend QUnit.config.urlConfig to support select-one dropdowns
+  * Assert: Extend throws to accept Error instances
+  * Assert: Extend throws to handle errors as strings
+  * CSS: Updating qunit.css for consistency
+  * Core: Cache window.clearTimeout in case it gets mocked
+  * Core: Run multiple tests by test number
+  * jshint: add es3 option to ensure oldie support
+
+1.13.0 / 2014-01-04
+==================
+
+  * Tests: Stop using the expected argument in test() calls
+  * Logging: Add runtime property to testDone, deprecate duration
+  * Assert: Remove raises (deprecated 2012), replace with failed assertion
+  * Grunt: Add non-browser test as grunt task. Runs existing tests in node.
+  * Export: Only export to the variable that we check for.
+  * Core: Properly check for existence of document
+  * Core: Remove triggerEvent, which isn't used or documented anywhere.
+  * Core: Silence addEvent in non-browser env
+  * The Grand QUnit Split of 2013
+  * Use `id` function for selection elements in two places that were not using it. Closes gh-463
+  * Add bower.json. Fixes #461
+
 1.12.0 / 2013-06-21
 ===================
 
