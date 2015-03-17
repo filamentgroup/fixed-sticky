@@ -130,7 +130,7 @@
 		destroy: function( el ) {
 			var $el = $( el );
 			if (S.bypass()) {
-				return;
+				return $el;
 			}
 
 			return $el.each(function() {
@@ -149,7 +149,7 @@
 			var $el = $( el );
 
 			if( S.bypass() ) {
-				return;
+				return $el;
 			}
 
 			return $el.each(function() {
