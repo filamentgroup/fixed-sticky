@@ -75,7 +75,20 @@
 			if( initialOffset === undefined ) {
 				initialOffset = $el.offset().top;
 				$el.data( S.keys.offset, initialOffset );
-				$el.after( $( '<div>' ).addClass( S.classes.clone ).height( height ) );
+				
+				var clone = $( '<div>' )
+					.addClass( S.classes.clone )
+					.height( height )
+					.width( $el.outerWidth() )
+					.css({
+						'margin': $el.css('margin'), 
+						'float': $el.css('float'), 
+						'clear': $el.css('clear'), 
+						'display': $el.css('display'), 
+						'border-box': $el.css('border-box')
+					});
+				
+				$el.after( clone );
 			}
 
 			if( !position ) {
