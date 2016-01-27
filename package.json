@@ -28,6 +28,6 @@
 		"grunt-contrib-uglify": "~0.10.0",
 		"grunt-contrib-watch": "~0.6.1",
 		"grunt-gh-pages": "~0.10.0",
-		"bower": "~1.6.5"
+		"bower": "~1.7.7"
 	}
 }
