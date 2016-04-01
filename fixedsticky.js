@@ -60,6 +60,12 @@
 				scroll = S.getScrollTop(),
 				isAlreadyOn = $el.is( '.' + S.classes.active ),
 				toggle = function( turnOn ) {
+					// Add dummy div the same height as sticky element to maintain spacing (remove when no longer sticky)
+					if (turnOn) {
+						$el.after($('<div>').addClass(S.classes.clone).height(height));
+					} else {
+						$el.next('.'+S.classes.clone).remove();
+					}
 					$el[ turnOn ? 'addClass' : 'removeClass' ]( S.classes.active )
 						[ !turnOn ? 'addClass' : 'removeClass' ]( S.classes.inactive );
 				},
@@ -72,11 +78,12 @@
 				parentOffset = $parent.offset().top,
 				parentHeight = $parent.outerHeight();
 
-			if( initialOffset === undefined ) {
-				initialOffset = $el.offset().top;
-				$el.data( S.keys.offset, initialOffset );
-				$el.after( $( '<div>' ).addClass( S.classes.clone ).height( height ) );
-			}
+			// Set/update initialOffset (if sticky, get offset of dummy div instead)
+			initialOffset = !isAlreadyOn ? $el.offset().top : $el.next('.'+S.classes.clone).offset().top;
+			$el.data( S.keys.offset, initialOffset );
+
+			// If there's a dummy div, update the height
+			$el.next( '.' + S.classes.clone ).height(height);
 
 			if( !position ) {
 				// Some browsers require fixed/absolute to report accurate top/left values.
