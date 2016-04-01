@@ -76,6 +76,8 @@
 				initialOffset = $el.offset().top;
 				$el.data( S.keys.offset, initialOffset );
 				$el.after( $( '<div>' ).addClass( S.classes.clone ).height( height ) );
+			} else {
+				$el.next( '.' + S.classes.clone ).height( height );
 			}
 
 			if( !position ) {

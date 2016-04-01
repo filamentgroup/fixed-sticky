@@ -44,8 +44,10 @@ body {
 /* Fixed-Sticky CSS */
 .top {
 	top: 0; 
+	bottom: auto;
 }
 .bottom {
+	top: auto;
 	bottom: 0;
 }
 #top-a {
@@ -68,4 +70,10 @@ body {
 }
 .container {
 	background-color: #999;
+}
+
+@media ( max-width: 25em ) {
+	#top-a {
+		height: 200px;
+	}
 }
