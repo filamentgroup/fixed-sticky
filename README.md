@@ -13,7 +13,7 @@ CSS position:sticky is really in its infancy in terms of browser support. In sto
 
 ~~In Chrome you can enable it by navigating to `chrome://flags` and enabling experimental “WebKit features” or “Web Platform features” (Canary).~~ Chrome temporarily removed their native `position: sticky` implementation.
 
-In Firefox you you can go to `about:config` and set `layout.css.sticky.enabled` to "true".
+In Firefox you can go to `about:config` and set `layout.css.sticky.enabled` to "true".
 
 ## Important
 
