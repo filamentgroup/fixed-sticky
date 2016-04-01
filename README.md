@@ -9,11 +9,9 @@ A CSS `position:sticky` polyfill.
 
 ## Browser Support
 
-CSS position:sticky is really in its infancy in terms of browser support. In stock browsers, it is currently only available in iOS 6.
+CSS position:sticky is in its infancy in terms of browser support. In stock browsers, it is available in Firefox 32+ and prefixed in Safari on iOS 6+ and Safari 6.1+.
 
 ~~In Chrome you can enable it by navigating to `chrome://flags` and enabling experimental “WebKit features” or “Web Platform features” (Canary).~~ Chrome temporarily removed their native `position: sticky` implementation.
-
-In Firefox you can go to `about:config` and set `layout.css.sticky.enabled` to "true".
 
 ## Important
 
