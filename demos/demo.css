@@ -69,3 +69,9 @@ body {
 .container {
 	background-color: #999;
 }
+
+@media ( max-width: 25em ) {
+	#top-a {
+		height: 200px;
+	}
+}
