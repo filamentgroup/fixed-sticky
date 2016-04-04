@@ -81,6 +81,17 @@ If you’re having weird issues with native `position: sticky`, you can tell fix
 
 Use the provided `fixedsticky.js` and `fixedsticky.css` files.
 
+### Also available in [NPM](https://www.npmjs.com/package/fixed-sticky)
+
+This package is available in NPM for use with [Browserify](http://browserify.org/). First install the package.
+
+    npm install --save fixed-sticky
+
+Then, require it and register it with your copy of jQuery.
+
+    var $ = require('jquery');
+    require('fixed-sticky')(window, $);
+
 ### Also available in [Bower](http://bower.io/)
 
     bower install filament-sticky
