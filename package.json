@@ -20,7 +20,7 @@
 	},
 	"devDependencies": {
 		"grunt-cli": "~1.1.0",
-		"grunt": "~0.4.1",
+		"grunt": "~1.0.1",
 		"matchdep": "~1.0.0",
 		"grunt-contrib-clean": "~1.0.0",
 		"grunt-contrib-jshint": "~1.0.0",
