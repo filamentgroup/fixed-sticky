@@ -64,8 +64,8 @@
 				offset;
 
 			position = {
-				top: $el.css( 'top' ) !== 'auto',
-				bottom: $el.css( 'bottom' ) !== 'auto'
+				top: $el.css( 'top' ) !== 'auto' && !$el.css( 'top' ),
+				bottom: $el.css( 'bottom' ) !== 'auto' && !$el.css( 'bottom' )
 			};
 			$el.data( S.keys.position, position );
 
