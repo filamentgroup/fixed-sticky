@@ -25,7 +25,7 @@
 		"grunt-contrib-clean": "~1.0.0",
 		"grunt-contrib-jshint": "~1.0.0",
 		"grunt-contrib-qunit": "~0.7.0",
-		"grunt-contrib-uglify": "~1.0.1",
+		"grunt-contrib-uglify": "~2.0.0",
 		"grunt-contrib-watch": "~1.0.0",
 		"grunt-gh-pages": "~1.0.0",
 		"bower": "~1.7.7"
