@@ -26,7 +26,8 @@
 			active: 'fixedsticky-on',
 			inactive: 'fixedsticky-off',
 			clone: 'fixedsticky-dummy',
-			withoutFixedFixed: 'fixedsticky-withoutfixedfixed'
+			withoutFixedFixed: 'fixedsticky-withoutfixedfixed',
+			parent: 'fixedsticky-parent'
 		},
 		keys: {
 			offset: 'fixedStickyOffset',
@@ -68,7 +69,7 @@
 				skipSettingToFixed,
 				elTop,
 				elBottom,
-				$parent = $el.parent(),
+				$parent = $el.parents('.' + S.classes.parent).length > 0 ? $el.parents('.' + S.classes.parent).first() : $el.parent(),
 				parentOffset = $parent.offset().top,
 				parentHeight = $parent.outerHeight();
 
