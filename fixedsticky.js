@@ -55,6 +55,8 @@
 		update: function( el ) {
 			if( !el.offsetWidth ) { return; }
 
+			$( el ).removeClass('fixedsticky-angular-fix');
+
 			var $el = $( el ),
 				height = $el.outerHeight(),
 				initialOffset = $el.data( S.keys.offset ),
