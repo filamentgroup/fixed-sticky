@@ -20,3 +20,6 @@
 .fixedsticky-on + .fixedsticky-dummy {
 	display: block;
 }
+.fixedsticky-angular-fix {
+	position: fixed;
+}
