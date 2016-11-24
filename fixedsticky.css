@@ -13,6 +13,7 @@
 .fixedsticky-withoutfixedfixed .fixedsticky-on,
 .fixed-supported .fixedsticky-on {
 	position: fixed;
+	width:100%;
 }
 .fixedsticky-dummy {
 	display: none;
