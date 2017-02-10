@@ -1,6 +1,6 @@
 # Fixed-sticky [![Build Status](https://travis-ci.org/filamentgroup/fixed-sticky.svg?branch=master)](https://travis-ci.org/filamentgroup/fixed-sticky)
 
-A CSS `position:sticky` polyfill.
+A CSS `position: sticky` polyfill.
 
 [![Filament Group](http://filamentgroup.com/images/fg-logo-positive-sm-crop.png) ](http://www.filamentgroup.com/)
 
@@ -9,9 +9,7 @@ A CSS `position:sticky` polyfill.
 
 ## Browser Support
 
-CSS position:sticky is in its infancy in terms of browser support. In stock browsers, it is available in Firefox 32+ and prefixed in Safari on iOS 6+ and Safari 6.1+.
-
-~~In Chrome you can enable it by navigating to `chrome://flags` and enabling experimental “WebKit features” or “Web Platform features” (Canary).~~ Chrome temporarily removed their native `position: sticky` implementation.
+CSS `position: sticky` is in its infancy in terms of browser support. In stock browsers, it is available in Firefox 32+, Chrome 56+, and prefixed in Safari on iOS 6+ and Safari 6.1+.
 
 ## Important
 
@@ -39,7 +37,7 @@ Here’s an example of what a `sticky` element with CSS `bottom: 20px` behaves l
 
 ## Plugin Usage
 
-Just qualify element you’d like to be `position:sticky` with a `fixedsticky` class.
+Just qualify element you’d like to be `position: sticky` with a `fixedsticky` class.
 
     <div id="my-element" class="fixedsticky">
 
@@ -59,13 +57,13 @@ Optionally, you may also destroy the component:
 
 ## Demos
 * For a fixed-sticky demo, open [`demo.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo.html).
-* For a pure native position: sticky test, open [`demo-control.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo-control.html).
+* For a pure native `position: sticky` test, open [`demo-control.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo-control.html).
 
 ## Native `position: sticky` Caveats
 
 * Any non-default value (not `visible`) for `overflow`, `overflow-x`, or `overflow-y` on the parent element will disable `position: sticky` (via [@davatron5000](https://twitter.com/davatron5000/status/434357818498351104)).
-* iOS ~~(and Chrome)~~ do not support `position: sticky;` with `display: inline-block;`.
-* This plugin ~~(and Chrome’s implementation)~~ does not (yet) support use with `thead` and `tfoot`.
+* iOS does not support `position: sticky;` with `display: inline-block;`.
+* This plugin (and Chrome’s implementation) does not (yet) support use with `thead` and `tfoot`.
 * Native `sticky` anchors to parent elements using their own overflow. This means scrolling the element fixes the sticky element to the parent dimensions. This plugin does not support overflow on parent elements.
 
 ### Using the polyfill instead of native
@@ -87,7 +85,7 @@ Use the provided `fixedsticky.js` and `fixedsticky.css` files.
 
 ## Browser Support
 
-These tests were performed using fixed-sticky with fixed-fixed. It’s safest to use them together (`position:fixed` is a minefield on older devices), but they can be used independently.
+These tests were performed using fixed-sticky with fixed-fixed. It’s safest to use them together (`position: fixed` is a minefield on older devices), but they can be used independently.
 
 ### Native Sticky
 
