@@ -54,7 +54,10 @@
 		update: function( el ) {
 			if( !el.offsetWidth ) { return; }
 
-			var $el = $( el ),
+			var $el = $( el );
+			if (!$el.data(S.keys.id)) { return; }
+			
+			var height = $el.outerHeight(),
 				height = $el.outerHeight(),
 				initialOffset = $el.data( S.keys.offset ),
 				scroll = S.getScrollTop(),
