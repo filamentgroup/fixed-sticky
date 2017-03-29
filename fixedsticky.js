@@ -52,10 +52,11 @@
 				win.FixedFixed && !$( win.document.documentElement ).hasClass( 'fixed-supported' );
 		},
 		update: function( el ) {
-			if( !el.offsetWidth ) { return; }
+			var $el = $( el );
+			
+			if( !el.get(0).offsetWidth ) { return; }
 
-			var $el = $( el ),
-				height = $el.outerHeight(),
+			var height = $el.outerHeight(),
 				initialOffset = $el.data( S.keys.offset ),
 				scroll = S.getScrollTop(),
 				isAlreadyOn = $el.is( '.' + S.classes.active ),
