@@ -22,7 +22,7 @@
 		"grunt-cli": "~1.1.0",
 		"grunt": "~0.4.1",
 		"matchdep": "~1.0.0",
-		"grunt-contrib-clean": "~1.0.0",
+		"grunt-contrib-clean": "~1.1.0",
 		"grunt-contrib-jshint": "~1.0.0",
 		"grunt-contrib-qunit": "~0.7.0",
 		"grunt-contrib-uglify": "~1.0.1",
