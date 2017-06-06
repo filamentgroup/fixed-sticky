@@ -1,33 +1,37 @@
 {
-	"name": "fixed-sticky",
-	"version": "0.1.7",
-	"description": "A position: sticky polyfill that works with filamentgroup/fixed-fixed for a safer position:fixed fallback.",
-	"main": "fixedsticky.js",
-	"scripts": {
-		"test": "./node_modules/.bin/grunt test"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/filamentgroup/fixed-sticky.git"
-	},
-	"keywords": [
-		"sticky"
-	],
-	"author": "Zach Leatherman",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/filamentgroup/fixed-sticky/issues"
-	},
-	"devDependencies": {
-		"grunt-cli": "~1.1.0",
-		"grunt": "~0.4.1",
-		"matchdep": "~1.0.0",
-		"grunt-contrib-clean": "~1.0.0",
-		"grunt-contrib-jshint": "~1.0.0",
-		"grunt-contrib-qunit": "~0.7.0",
-		"grunt-contrib-uglify": "~1.0.1",
-		"grunt-contrib-watch": "~1.0.0",
-		"grunt-gh-pages": "~1.0.0",
-		"bower": "~1.7.7"
-	}
+  "name": "fixed-sticky",
+  "version": "0.1.8",
+  "description": "A position: sticky polyfill that works with filamentgroup/fixed-fixed for a safer position:fixed fallback.",
+  "main": "fixedsticky.js",
+  "scripts": {
+    "test": "./node_modules/.bin/grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/filamentgroup/fixed-sticky.git"
+  },
+  "keywords": [
+    "sticky"
+  ],
+  "author": "Zach Leatherman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/filamentgroup/fixed-sticky/issues"
+  },
+  "devDependencies": {
+    "grunt": "~1.0.1",
+    "grunt-cli": "~1.2.0",
+    "grunt-contrib-clean": "~1.1.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "~1.1.0",
+    "grunt-contrib-qunit": "~2.0.0",
+    "grunt-contrib-uglify": "~3.0.1",
+    "grunt-contrib-watch": "~1.0.0",
+    "grunt-gh-pages": "~2.0.0",
+    "matchdep": "~1.0.0",
+    "qunitjs": "^2.3.3"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
 }

@@ -81,10 +81,6 @@ If you’re having weird issues with native `position: sticky`, you can tell fix
 
 Use the provided `fixedsticky.js` and `fixedsticky.css` files.
 
-### Also available in [Bower](http://bower.io/)
-
-    bower install filament-sticky
-
 ## Browser Support
 
 These tests were performed using fixed-sticky with fixed-fixed. It’s safest to use them together (`position:fixed` is a minefield on older devices), but they can be used independently.

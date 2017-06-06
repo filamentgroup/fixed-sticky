@@ -47,6 +47,21 @@ module.exports = function(grunt) {
 				dest: 'dist/<%= name %>.min.js'
 			}
 		},
+		copy: {
+			jquery: {
+				src: 'node_modules/jquery/dist/jquery.js',
+				dest: 'dist/libs/jquery.js'
+			},
+			qunit: {
+				files: [{
+					expand: true,
+					flatten: true,
+					src: [ 'node_modules/qunitjs/qunit/*' ],
+					dest: 'dist/libs/',
+					filter: 'isFile'
+				}]
+			}
+		},
 		watch: {
 			files: ['<%= name %>.css', '<%= name %>.js', 'test/fixed-sticky-tests.js'],
 			tasks: 'qunit'
@@ -56,15 +71,11 @@ module.exports = function(grunt) {
 		},
 		'gh-pages': {
 			options: {},
-			src: ['<%= name %>.css', '<%= name %>.js', 'bower_components/**/*', 'test/**/*', 'demos/**/*']
+			src: ['<%= name %>.css', '<%= name %>.js', 'test/**/*', 'demos/**/*']
 		}
 	});
 
 	require( 'matchdep' ).filterDev( 'grunt-*' ).forEach( grunt.loadNpmTasks );
 
-	// Default task.
-	grunt.registerTask( 'test', [ 'jshint:test', 'qunit' ] );
-	grunt.registerTask( 'lint', [ 'jshint' ] );
-	grunt.registerTask( 'build', [ 'clean', 'jshint:src', 'qunit', 'uglify' ] );
-	grunt.registerTask( 'default', [ 'jshint', 'qunit' ] );
+	grunt.registerTask( 'default', [ 'copy', 'jshint', 'qunit', 'uglify' ] );
 };

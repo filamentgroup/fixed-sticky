@@ -21,18 +21,18 @@
 
 	FixedSticky.tests.sticky = false;
 
-	module('testDefault', {
+	QUnit.module('testDefault', {
 		setup: function() {
 			$(window).scrollTop( 0 );
 		}
 	});
 
-	test( 'Environment', function() {
+	QUnit.test( 'Environment', function( assert ) {
 		// These tests require non-native sticky support. Should be set above.
-		ok( !FixedSticky.tests.sticky );
+		assert.ok( !FixedSticky.tests.sticky );
 	});
 
-	test( 'Standard Top', function() {
+	QUnit.test( 'Standard Top', function( assert ) {
 		$( '#qunit-fixture' ).html(
 				['<style>#sticky { top: 0; }</style>',
 				'<div id="sticky" class="fixedsticky">Sticky</div>',
@@ -41,13 +41,13 @@
 		var $sticky = $( '#sticky' );
 		$sticky.fixedsticky();
 
-		ok( $sticky.hasClass( 'fixedsticky' ) );
+		assert.ok( $sticky.hasClass( 'fixedsticky' ) );
 		$(window).scrollTop( 1000 ).trigger( 'scroll' );
-		equal( $sticky.css( 'position' ), 'fixed' );
-		equal( $sticky.offset().top, 1000 );
+		assert.equal( $sticky.css( 'position' ), 'fixed' );
+		assert.equal( $sticky.offset().top, 1000 );
 	});
 
-	test( 'Standard Bottom', function() {
+	QUnit.test( 'Standard Bottom', function( assert ) {
 		$( '#qunit-fixture' ).html(
 				['<style>#sticky { bottom: 0; }</style>',
 				'<div style="height: 2000px">Test</div>',
@@ -56,13 +56,13 @@
 		var $sticky = $( '#sticky' );
 		$sticky.fixedsticky();
 
-		ok( $sticky.hasClass( 'fixedsticky' ) );
+		assert.ok( $sticky.hasClass( 'fixedsticky' ) );
 		$(window).scrollTop( 1000 ).trigger( 'scroll' );
-		equal( $sticky.css( 'position' ), 'fixed' );
-		equal( Math.round( $sticky.offset().top ), 1000 + $( window ).height() - $sticky.height() );
+		assert.equal( $sticky.css( 'position' ), 'fixed' );
+		assert.equal( Math.round( $sticky.offset().top ), 1000 + $( window ).height() - $sticky.height() );
 	});
 
-	test( 'Top constrainted to parent bottom', function() {
+	QUnit.test( 'Top constrainted to parent bottom', function( assert ) {
 		$( '#qunit-fixture' ).html(
 				['<style>#sticky { top: 0; }</style>',
 				'<div style="height: 1000px"><div id="sticky" class="fixedsticky">Sticky</div></div>',
@@ -71,15 +71,15 @@
 		var $sticky = $( '#sticky' );
 		$sticky.fixedsticky();
 
-		ok( $sticky.hasClass( 'fixedsticky' ) );
+		assert.ok( $sticky.hasClass( 'fixedsticky' ) );
 		$(window).scrollTop( 1000 ).trigger( 'scroll' );
-		equal( $sticky.css( 'position' ), 'fixed' );
-		equal( $sticky.offset().top, 1000 );
+		assert.equal( $sticky.css( 'position' ), 'fixed' );
+		assert.equal( $sticky.offset().top, 1000 );
 		$(window).scrollTop( 2000 ).trigger( 'scroll' );
-		equal( $sticky.css( 'position' ), 'static' );
+		assert.equal( $sticky.css( 'position' ), 'static' );
 	});
 
-	test( 'Bottom constrainted to parent top', function() {
+	QUnit.test( 'Bottom constrainted to parent top', function( assert ) {
 		$( '#qunit-fixture' ).html(
 				['<style>#sticky { bottom: 0; }</style>',
 				'<div style="height: 2000px">Test</div>',
@@ -88,30 +88,30 @@
 		var $sticky = $( '#sticky' );
 		$sticky.fixedsticky();
 
-		ok( $sticky.hasClass( 'fixedsticky' ) );
+		assert.ok( $sticky.hasClass( 'fixedsticky' ) );
 
 		$(window).scrollTop( 3000 ).trigger( 'scroll' );
-		equal( $sticky.css( 'position' ), 'fixed' );
-		equal( Math.round( $sticky.offset().top ), 3000 + $( window ).height() - $sticky.height() );
+		assert.equal( $sticky.css( 'position' ), 'fixed' );
+		assert.equal( Math.round( $sticky.offset().top ), 3000 + $( window ).height() - $sticky.height() );
 
 		$(window).scrollTop( 1000 ).trigger( 'scroll' );
-		equal( $sticky.css( 'position' ), 'static' );
+		assert.equal( $sticky.css( 'position' ), 'static' );
 	});
 
 
-	test( 'Cleanup', function() {
+	QUnit.test( 'Cleanup', function( assert ) {
 		$( '#qunit-fixture' ).html( '<div id="sticky" class="fixedsticky">Sticky</div>' );
 
 		var $sticky = $( '#sticky' );
 			$sticky.fixedsticky();
 
-		ok( $sticky.next().hasClass( FixedSticky.classes.clone ) );
+		assert.ok( $sticky.next().hasClass( FixedSticky.classes.clone ) );
 
 		$sticky.fixedsticky( 'destroy' );
-		ok( !$sticky.siblings( '.' + FixedSticky.classes.clone ).length );
+		assert.ok( !$sticky.siblings( '.' + FixedSticky.classes.clone ).length );
 	});
 
-	test( 'Destroying one fixedsticky should not cleanup others', function() {
+	QUnit.test( 'Destroying one fixedsticky should not cleanup others', function( assert ) {
 		$( '#qunit-fixture' ).html(
 				['<style>#sticky { top: 0; } #sticky2 { top: 0; }</style>',
 				'<div id="sticky" class="fixedsticky">Sticky</div>',
@@ -126,10 +126,10 @@
 
 		$sticky.fixedsticky( 'destroy' );
 
-		ok( $sticky2.hasClass( 'fixedsticky' ) );
+		assert.ok( $sticky2.hasClass( 'fixedsticky' ) );
 		$(window).scrollTop( 1000 ).trigger( 'scroll' );
-		equal( $sticky2.css( 'position' ), 'fixed' );
-		equal( $sticky2.offset().top, 1000 );
+		assert.equal( $sticky2.css( 'position' ), 'fixed' );
+		assert.equal( $sticky2.offset().top, 1000 );
 	});
 
 }( jQuery ));
