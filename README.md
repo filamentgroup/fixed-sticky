@@ -4,8 +4,6 @@
 
 [Native sticky positioning](http://caniuse.com/#feat=css-sticky) is expanding. We must weigh the diminishing cross-section of browsers that require a polyfill against this plugin’s own maintenance costs. But foremost, our own design decisions that lean towards using sticky as an enhancement only (the fallback behavior is acceptable). Therefore, we’ve decided that now is the right time to retire `fixed-sticky`. The [previous documentation can be found at v0.1.7](https://github.com/filamentgroup/fixed-sticky/tree/cd752571b89d0dcc0d2783feb8dda43cf4ff259d). NPM will report a deprecation warning. If you want to maintain a fork of this package, send us a message ([@zachleat on Twitter](https://twitter.com/zachleat)) and I’ll add a link to it below. **Thank you!**
 
-A CSS `position:sticky` polyfill.
-
 [![Filament Group](http://filamentgroup.com/images/fg-logo-positive-sm-crop.png) ](http://www.filamentgroup.com/)
 
 - ©2013 [@zachleat](https://github.com/zachleat), Filament Group
