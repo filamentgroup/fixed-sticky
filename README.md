@@ -1,4 +1,4 @@
-# Fixed-sticky [![Build Status](https://travis-ci.org/filamentgroup/fixed-sticky.svg?branch=master)](https://travis-ci.org/filamentgroup/fixed-sticky)
+# Fixed-sticky
 
 A CSS `position:sticky` polyfill.
 
@@ -7,13 +7,11 @@ A CSS `position:sticky` polyfill.
 - ©2013 [@zachleat](https://github.com/zachleat), Filament Group
 - MIT license
 
-## Browser Support
+## This plugin is Deprecated
 
-CSS position:sticky is in its infancy in terms of browser support. In stock browsers, it is available in Firefox 32+ and prefixed in Safari on iOS 6+ and Safari 6.1+.
+[Native sticky positioning](http://caniuse.com/#feat=css-sticky) is expanding. We must weigh the diminishing cross-section of browsers that require a polyfill against this plugin’s own maintenance costs. But foremost, our own design decisions that lean towards using sticky as an enhancement only (the fallback behavior is acceptable). Therefore, we’ve decided that now is the right time to retire `fixed-sticky`. The [previous documentation can be found at v0.1.7](https://github.com/filamentgroup/fixed-sticky/tree/cd752571b89d0dcc0d2783feb8dda43cf4ff259d). NPM will report a deprecation warning. If you want to maintain a fork of this package, send us a message ([@zachleat on Twitter](https://twitter.com/zachleat)) and I’ll add a link to it below. **Thank you!**
 
-~~In Chrome you can enable it by navigating to `chrome://flags` and enabling experimental “WebKit features” or “Web Platform features” (Canary).~~ Chrome temporarily removed their native `position: sticky` implementation.
-
-## Important
+## Native position: sticky
 
 The most overlooked thing about `position: sticky` is that `sticky` elements are constrained to the dimensions of their parent elements. This means if a `sticky` element is inside of a parent container that is the same dimensions as itself, the element will not stick.
 
@@ -37,83 +35,12 @@ Here’s an example of what a `sticky` element with CSS `bottom: 20px` behaves l
 
 *Scrolling up.* Sticky.
 
-## Plugin Usage
-
-Just qualify element you’d like to be `position:sticky` with a `fixedsticky` class.
-
-    <div id="my-element" class="fixedsticky">
-
-Add your own CSS to position the element. Supports any value for `top` or `bottom`.
-
-    .fixedsticky { top: 0; }
-
-Next, add the events and initialize your sticky nodes:
-
-    $( '#my-element' ).fixedsticky();
-
-*Note: if you’re going to use non-zero values for `top` or `bottom`, fixed-sticky is victim to a cross-browser incompatibility with jQuery’s `css` method (namely, IE8- doesn’t normalize non-pixel values to pixels). Use pixels (or `0`) for best cross-browser compatibility.*
-
-Optionally, you may also destroy the component:
-
-    $( '#my-element' ).fixedsticky( 'destroy' );
-
 ## Demos
-* For a fixed-sticky demo, open [`demo.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo.html).
-* For a pure native position: sticky test, open [`demo-control.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo-control.html).
+* To test pure native position: sticky test, open [`demo-control.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo-control.html).
 
 ## Native `position: sticky` Caveats
 
 * Any non-default value (not `visible`) for `overflow`, `overflow-x`, or `overflow-y` on the parent element will disable `position: sticky` (via [@davatron5000](https://twitter.com/davatron5000/status/434357818498351104)).
 * iOS ~~(and Chrome)~~ do not support `position: sticky;` with `display: inline-block;`.
-* This plugin ~~(and Chrome’s implementation)~~ does not (yet) support use with `thead` and `tfoot`.
+* This plugin ~~(and Chrome’s implementation)~~ does not support use with `thead` and `tfoot`.
 * Native `sticky` anchors to parent elements using their own overflow. This means scrolling the element fixes the sticky element to the parent dimensions. This plugin does not support overflow on parent elements.
-
-### Using the polyfill instead of native
-
-If you’re having weird issues with native `position: sticky`, you can tell fixed-sticky to use the polyfill instead of native. Just override the sticky feature test to always return false. Make sure you do this before any calls to `$( '#my-element' ).fixedsticky();`.
-
-    // After fixed-sticky.js
-    FixedSticky.tests.sticky = false;
-
-* [`demo-opt-out-native.html`](http://filamentgroup.github.com/fixed-sticky/demos/demo-opt-out-native.html) shows this behavior.
-
-## Installation
-
-Use the provided `fixedsticky.js` and `fixedsticky.css` files.
-
-## Browser Support
-
-These tests were performed using fixed-sticky with fixed-fixed. It’s safest to use them together (`position:fixed` is a minefield on older devices), but they can be used independently.
-
-### Native Sticky
-
-* iOS 6.1+
-
-### Polyfilled
-
-* Internet Explorer 7, 8, 9, 10
-* Firefox 24, Firefox 17 ESR
-* Chrome 29
-* Safari 6.0.5
-* Opera 12.16
-* Android 4.X
-
-### Fallback (static positioning)
-
-* Android 2.X
-* Opera Mini
-* Blackberry OS 5, 6, 7
-* Windows Phone 7.5
-
-## TODO
-
-* Add support for table headers.
-* Vanilla JS version.
-* Make sticky smoother on transition between sticky/static for container based
-
-## [Tests](http://filamentgroup.github.io/fixed-sticky/test/fixed-sticky.html)
-
-## Release History
-
-* `v0.1.0`: Initial release.
-* `v0.1.3`: Bug fixes, rudimentary tests, destroy method.
