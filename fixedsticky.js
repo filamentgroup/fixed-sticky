@@ -190,4 +190,7 @@
 		$( win.document.documentElement ).addClass( S.classes.withoutFixedFixed );
 	}
 
+	$(function () {
+		$('.fixedsticky').fixedsticky();
+	});
 })( window, jQuery );
