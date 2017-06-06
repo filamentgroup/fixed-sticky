@@ -55,7 +55,7 @@
 			if( !el.offsetWidth ) { return; }
 
 			var $el = $( el ),
-				height = $el.outerHeight(),
+				height = $el.outerHeight(true),
 				initialOffset = $el.data( S.keys.offset ),
 				scroll = S.getScrollTop(),
 				isAlreadyOn = $el.is( '.' + S.classes.active ),
@@ -70,7 +70,7 @@
 				elBottom,
 				$parent = $el.parent(),
 				parentOffset = $parent.offset().top,
-				parentHeight = $parent.outerHeight();
+				parentHeight = $parent.outerHeight(true);
 
 			if( initialOffset === undefined ) {
 				initialOffset = $el.offset().top;
