@@ -31,7 +31,8 @@
 		keys: {
 			offset: 'fixedStickyOffset',
 			position: 'fixedStickyPosition',
-			id: 'fixedStickyId'
+			id: 'fixedStickyId',
+			linkedElements: 'fixedStickyLinkedElements',
 		},
 		tests: {
 			sticky: featureTest( 'position', 'sticky' ),
@@ -62,6 +63,14 @@
 				toggle = function( turnOn ) {
 					$el[ turnOn ? 'addClass' : 'removeClass' ]( S.classes.active )
 						[ !turnOn ? 'addClass' : 'removeClass' ]( S.classes.inactive );
+					var linkedElements = $el.data( S.keys.linkedElements);
+					var offset = height;
+					for(var i = 0; i < linkedElements.length; i++){
+						var el2 = $(linkedElements[i]);
+						el2[ turnOn ? 'addClass' : 'removeClass' ]( S.classes.active )
+							[ !turnOn ? 'addClass' : 'removeClass' ]( S.classes.inactive );
+						offset = offset + el2.outerHeight();
+					}
 				},
 				viewportHeight = $( window ).height(),
 				position = $el.data( S.keys.position ),
@@ -158,6 +167,7 @@
 				var _this = this;
 				var id = uniqueIdCounter++;
 				$( this ).data( S.keys.id, id );
+				$( this ).data( S.keys.linkedElements, [] );
 
 				$( win ).bind( 'scroll.fixedsticky' + id, function() {
 					S.update( _this );
@@ -169,15 +179,27 @@
 					}
 				});
 			});
+		},
+
+		link: function( el,otherElement ) {
+			var $el = $( el );
+			var $other = $(otherElement);
+
+			return $el.each(function() {
+				var linkedElements = $( this ).data( S.keys.linkedElements);
+				linkedElements.push(otherElement);
+				$other.addClass("fixedsticky");
+				$other.after( $( '<div>' ).addClass( S.classes.clone ).height( $other.outerHeight() ) );
+			});
 		}
 	};
 
 	win.FixedSticky = S;
 
 	// Plugin
-	$.fn.fixedsticky = function( method ) {
+	$.fn.fixedsticky = function( method,options ) {
 		if ( typeof S[ method ] === 'function') {
-			return S[ method ].call( S, this);
+			return S[ method ].call( S, this,options);
 		} else if ( typeof method === 'object' || ! method ) {
 			return S.init.call( S, this );
 		} else {
