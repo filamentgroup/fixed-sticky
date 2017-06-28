@@ -9,6 +9,10 @@ In our own designs we use sticky sparingly and as an enhancement, which means th
 - ©2013 [@zachleat](https://github.com/zachleat), Filament Group
 - MIT license
 
+### Great alternatives
+
+* [Stickybits](https://github.com/dollarshaveclub/stickybits) from Dollar Shave Club and [Jeff Wainwright](https://twitter.com/yowainwright)
+
 ## Native position: sticky
 
 The most overlooked thing about `position: sticky` is that `sticky` elements are constrained to the dimensions of their parent elements. This means if a `sticky` element is inside of a parent container that is the same dimensions as itself, the element will not stick.
